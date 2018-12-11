@@ -1,0 +1,36 @@
+#' @title Traffic Images
+#'
+#' @description Returns links to images of live traffic conditions along Singapore's expressways and checkpoints with Malaysia.
+#'
+#' @param api_key API key for LTA's Datamall
+#' @return A dataframe containing each camera's ID, location, and link to the image
+#' @examples
+#' getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
+#' @import httr
+#' @export getTrafficImages
+
+getTrafficImages <- function(api_key) {
+  result <- httr::GET("http://datamall2.mytransport.sg/ltaodataservice/Traffic-Images",
+                httr::add_headers(AccountKey = api_key))
+
+  if (httr::http_status(result)$category != "Success") {
+    message("Unsuccessful API call for traffic images. Please check your parameters or connection.")
+    return(result)
+  } else {
+    message("Successful API call for traffic images. Processing...")
+  }
+
+  output <- data.frame(matrix(nrow = 0, ncol = 4))
+  trafficimage_list <- httr::content(result)[[2]]
+  for (i in 1:length(trafficimage_list)) {
+    interim <- trafficimage_list[[i]]
+    interim[sapply(interim, is.null)] <- 0
+    output <- rbind(output, t(unlist(interim)))
+  }
+  names(output) <- names(unlist(trafficimage_list[[1]]))
+  output$CameraID <- as.character(output$CameraID)
+  output$Latitude <- as.numeric(as.character(output$Latitude))
+  output$Longitude <- as.numeric(as.character(output$Longitude))
+  message("API call successful. Number of traffic images found: ", nrow(output))
+  return(output)
+}

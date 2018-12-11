@@ -1,0 +1,15 @@
+Package: ltaer
+Type: Package
+Title: R wrapper for LTA's APIs
+Version: 0.1.0
+Authors@R: person("Shaun", "Khoo", email="khoowushaun@gmail.com", role=c("aut","cre"))
+Description: This package simplifies the process of calling the various transportation-related APIs in the Land Transport Authority's Datamall page (Singapore). 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: httr,
+    dplyr,
+    stringr,
+    leaflet,
+    htmltools
+RoxygenNote: 6.1.0.9000
