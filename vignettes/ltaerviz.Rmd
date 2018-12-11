@@ -1,0 +1,44 @@
+---
+title: "ltaer: Visualisations"
+author: "Shaun Khoo"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## 0. Visualising Geospatial Data
+
+As mentioned in the introduction, the main purpose of the `ltaer` package is to improve accessibility of Singapore's transportation data to the wider public. Visualisations are a crucial part of this because it communicates key observations and trends from the data in an intuitive and comprehensible manner. 
+
+Visualising geospatial data is generally more challenging that running visualisations on the `ggplot2` package, primarily because there are more things one has to deal with. The good thing is that there are many R packages that greatly simplify the amount we need to learn and do to create effective visualisations.
+
+Hence, this vignette aims to provide some suggestions and tips in visualising the data obtained from the various APIs. I begin first with introducing `plotSGMap`, a Leaflet wrapper provided in this package that enables you to plot your data with minimal coding.
+
+## 1. Using plotSGMap
+
+A picture speaks a thousand words, so:
+
+``` {r}
+library(ltaer)
+plotSGMap(bus_stops, popup = 'Description', cluster = FALSE, color = 'red')
+```
+
+
+
+Leaflet is one of the
+
+
+
+
+
+

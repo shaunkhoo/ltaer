@@ -1,0 +1,28 @@
+---
+title: "Introduction to ltaer"
+author: "Shaun Khoo"
+date: "11/12/2018"
+output: html_document
+---
+
+# ltaer <img src="man/figures/logo.png" align="right" /> 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction and Motivation
+
+The `ltaer` package (pronounced 'later') is a convenient R wrapper for the various transportation-related APIs offered by the Land Transport Authority of Singapore (also known as the LTA Datamall). Currently, most of the APIs are geared towards app developers who use these real-time data for their mobile offerings. Used correctly and collected over a longer period of time, the data from the APIs can also serve as a rich dataset for people who are keen on analysing transportation trends in Singapore.
+
+The key motivation behind this package is to make the data more accessible to a wider audience. While it is not difficult to call the API directly using the `httr` package on R, it does require a greater understanding of R and APIs that a casual user may not possess. An important part of open data is accessibility, and I hope that this package will constitute a small step towards that goal for Singapore.
+
+## How to use this website
+
+You will find two vignettes (detailed explanations for how to use this package) on this website: one for the core functions, and another for visualisation possibilities. These can be found by clicking on 'Articles' above and choosing the vignette you want to read.
+
+If you want to dive directly into the documentation for each function within the package, click on 'Reference' instead which will lead you to a page with links to each function's documentation.
+
+## Contact
+
+For any bugs or issues, please raise an issue on Github [here](https://github.com/shaunkhoo/ltaer).
