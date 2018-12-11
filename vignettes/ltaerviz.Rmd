@@ -30,7 +30,7 @@ A picture speaks a thousand words, so:
 
 ``` {r}
 library(ltaer)
-plotSGMap(bus_stops, popup = 'Description', cluster = FALSE, color = 'blue')
+plotSGMap(bus_stops, popup = 'Description', cluster = FALSE, color = 'red', alpha = 1, size = 1)
 ```
 
 

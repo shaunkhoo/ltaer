@@ -37,6 +37,7 @@ plotSGMap <- function(dataframe, popup = NA, cluster = FALSE, color = "red", siz
                      opacity = alpha,
                      fillOpacity = alpha,
                      radius = size,
+                     weight = size,
                      clusterOptions = leaflet::markerClusterOptions(),
                      popup = ~htmltools::htmlEscape(popup_var))
   } else if (cluster == TRUE & is.na(popup)) {
@@ -46,12 +47,14 @@ plotSGMap <- function(dataframe, popup = NA, cluster = FALSE, color = "red", siz
                        opacity = alpha,
                        fillOpacity = alpha,
                        radius = size,
+                       weight = size,
                        clusterOptions = leaflet::markerClusterOptions())
   } else if (cluster == FALSE & !is.na(popup)) {
     popup_var <- dataframe[[popup]]
     map %>%
       leaflet::addCircleMarkers(color = color,
                                  radius = size,
+                                 weight = size,
                                  opacity = alpha,
                                  fillOpacity = alpha,
                                  popup = ~htmltools::htmlEscape(popup_var))
@@ -60,6 +63,7 @@ plotSGMap <- function(dataframe, popup = NA, cluster = FALSE, color = "red", siz
       leaflet::addCircleMarkers(color = color,
                                 opacity = alpha,
                                 fillOpacity = alpha,
-                                radius = size)
+                                radius = size,
+                                weight = size)
   } else message("Error: Inputs are not defined correctly.")
 }
