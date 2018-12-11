@@ -26,16 +26,25 @@ Hence, this vignette aims to provide some suggestions and tips in visualising th
 
 ## 1. Using plotSGMap
 
-A picture speaks a thousand words, so:
+`plotSGMap` is a convenient Leaflet wrapper which allows users to quickly plot geospatial data on an interactive map for data exploration. A picture speaks a thousand words, so...
 
 ``` {r}
 library(ltaer)
-plotSGMap(bus_stops, popup = 'Description', cluster = FALSE, color = 'red', alpha = 1, size = 1)
+plotSGMap(bus_stops, popup = 'Description', cluster = FALSE, colour = 'green', alpha = 1, size = 1)
 ```
 
+The key contributions here are twofold: users do not need any knowledge of `leaflet`, and `ggplot2` grammar is used here for familiarity (`alpha` and `size` are not `leaflet` arguments). The motivation here is to enable users to have a quick look at the data from a spatial perspective, and thus to quickly get to grips with the data they have received from the APIs.
+
+Here is an explanation of the various arguments in the function:
+
+* `dataframe`: The dataframe you want to plot on the Singapore map. It must contain one column for latitude, named either as 'lat' or 'latitude', and one column for longitude, named either as 'lng' or 'longitude' - neither are case-sensitive. 
+* `popup`: What appears when you click on each point on the Singapore map. It must be a character string and name another column in the `dataframe` that you want to display in the pop up.
+* `cluster`: Whether you want to display each point individually or cluster them automatically based on regions. By default, this is set to `FALSE`.
+* `colour`: The colour of each point being plotted. You can either state some simple colours directly (like 'red' or 'blue') or use a hex code - the default here is 'red'.
+* `alpha`: How opaque each point is. You can set it to 1 for fully opaque, and 0 for fully transparent - the default here is 0.5.
+* `size`: How large each point is. This is set to 5 by default, although for more cluttered maps you may want a smaller value like 1.
 
 
-Leaflet is one of the
 
 
 

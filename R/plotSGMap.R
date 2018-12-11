@@ -5,7 +5,7 @@
 #' @param dataframe The dataframe containing the latitude/longitude data
 #' @param popup Name of the variable in the dataframe to be displayed when a marker is clicked on - default is NA
 #' @param cluster Whether to cluster the markers or not - default is FALSE
-#' @param color Color of the markers - default is 'red'
+#' @param colour Color of the markers - default is 'red'
 #' @param size Size of the markers - default is 5
 #' @param alpha Opacity of the markers - default is 0.5
 #' @return A dataframe containing each carpark's information and number of available lots
@@ -19,7 +19,7 @@
 #' @import dplyr
 #' @export plotSGMap
 
-plotSGMap <- function(dataframe, popup = NA, cluster = FALSE, color = "red", size = 5, alpha = 0.5) {
+plotSGMap <- function(dataframe, popup = NA, cluster = FALSE, colour = "red", size = 5, alpha = 0.5) {
   requireNamespace("leaflet", quietly = TRUE)
   requireNamespace("htmltools", quietly = TRUE)
   if (!is.na(popup) & !(popup %in% colnames(dataframe))) {
