@@ -1,0 +1,68 @@
+---
+title: "Introduction to the ltaer package"
+author: "Shaun Khoo"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `ltaer` package (pronounced 'later') is a convenient R wrapper for the various transportation-related APIs offered by the Land Transport Authority of Singapore (also known as the LTA Datamall). Currently, most of the APIs are geared towards app developers who use these real-time data for their mobile offerings. If used correctly and collected over a longer period of time, the data from the APIs can also serve as a rich dataset for people who want to analyse transportation trends in Singapore.
+
+The key motivation behind this package is to make the data more accessible to a wider audience. While it is not difficult to call the API directly using the `httr` package on R, it does require a greater understanding of R and APIs that a casual user may not possess. An important part of open data is accessibility, and I hope that this package will constitute a small step towards that goal for Singapore.
+
+This vignette will introduce you to the core functions within the `ltaer` package that interact directly with LTA's APIs. Another vignette will provide some examples of `plotSGMap`, which provides an interactive map visualisation of the data, and other examples of how this data can be visualised.
+
+## 0. Working with LTA Datamall's APIs
+
+####API Key
+
+All API calls to the LTA Datamall, and thus all core functions in this package, require an API key. In layman terms, the API key is like a username/password with which you access the API. It helps the API developers to identify who is accessing the API, and to restrict access if they wish. As such, it is really important that you keep your API key **private** (don't share it with anyone else or post it online!). 
+
+As such, in order to use this package, please sign up for an API key [here](https://www.mytransport.sg/content/mytransport/home/dataMall/request-for-api.html). The process is quick, easy and straightforward. 
+
+You will notice that in the examples provided below, my API key is saved as `Sys.getenv('LTA_DATAMALL_KEY')`. This is one way to keep the API key private, and you can find out more about how to do this [here](https://daattali.gitbooks.io/stat545-ubc-github-io/bit003_api-key-env-var.html)
+
+####API Documentation
+
+Finally, please read this vignette alongside LTA's documentation for their APIs, which you can find [here](https://www.mytransport.sg/content/dam/datamall/datasets/LTA_DataMall_API_User_Guide.pdf). This will help you understand the outputs you are receiving from the APIs you are calling. By default, all functions in `ltaer` returns all the data that the API returns, so you do not have to worry about missing out on any data from using this package.
+
+####Installing this package
+
+This package is not available on CRAN (this is where you typically download R packages from when you run `install.package('pkgname')`). Due to a lack of time, it is unlikely that `ltaer` will ever be made available on CRAN either. The only way you can get `ltaer` working on your RStudio is to use the following code:
+
+```{r, eval=FALSE}
+install.packages('devtools')
+devtools::install_github('shaunkhoo/ltaer')
+```
+
+This will download the `ltaer` package directly from my Github repository and into your RStudio. Thereafter, you simply load the package in the same way as any other package, by entering `library(ltaer)`.
+
+## 1. Bus Arrival Timings
+
+Probably the most well-utilised API of the lot, the Bus Arrival API enables users to retrieve bus arrival timings for any bus stop in Singapore. There are some specific things to mention here (which might be clearer in the documentation):
+
+* For each bus service serving that bus stop, the bus arrival details (timing, coordinates, type, load etc) are reported for the next three buses. If there are only one or two 'next buses' left (usually around 11pm-1am), then the bus arrival details for those 'next bus' slots will be NA. 
+* All bus services where the last bus has passed the chosen bus stop will no longer show up on the Bus Arrivals API for that bus stop. This usually happens around 12am-1am, except for NightRider services which end at 3am-4am.
+* If there are no bus services at all, then the API will return an empty JSON file.
+
+```{r}
+library(ltaer)
+# The following code is commented out as it may not work all the time. The output has been saved in this package as 'bus_arrivals' for your use.
+# bus_arrivals <- getBusTimings(c('07531', '09047', '11239', '14151', '66451', '44289', '50021', '54269', '03019', '09022', '41029'), api_key = Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(head(bus_arrivals))
+```
+
+
+
+
+
