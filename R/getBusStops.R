@@ -50,6 +50,13 @@ getBusStops <- function(api_key) {
     output <- rbind(output, output0)
     num <- num + 1
   }
+
+  output$BusStopCode <- as.character(output$BusStopCode)
+  output$Latitude <- as.numeric(as.character(output$Latitude))
+  output$Longitude <- as.numeric(as.character(output$Longitude))
+  output$Description <- as.character(output$Description)
+  output$RoadName <- as.character(output$RoadName)
+
   message('API call complete. Number of bus stops returned: ', nrow(output))
   return(output)
 }

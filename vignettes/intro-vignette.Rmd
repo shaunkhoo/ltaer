@@ -144,7 +144,12 @@ taxi_avail <- getTaxiAvail(Sys.getenv('LTA_DATAMALL_KEY'))
 knitr::kable(head(taxi_avail))
 ```
 
+## 9. ERP Rates
 
+This API 
+
+
+##
 
 
 
