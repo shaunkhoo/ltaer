@@ -4,7 +4,8 @@
 \alias{plotSGMap}
 \title{Plot data on a map of Singapore}
 \usage{
-plotSGMap(dataframe, popup = NA, cluster = FALSE, color = "red")
+plotSGMap(dataframe, popup = NA, cluster = FALSE, color = "red",
+  size = 5, alpha = 0.5)
 }
 \arguments{
 \item{dataframe}{The dataframe containing the latitude/longitude data}
@@ -14,6 +15,10 @@ plotSGMap(dataframe, popup = NA, cluster = FALSE, color = "red")
 \item{cluster}{Whether to cluster the markers or not - default is FALSE}
 
 \item{color}{Color of the markers - default is 'red'}
+
+\item{size}{Size of the markers - default is 5}
+
+\item{alpha}{Opacity of the markers - default is 0.5}
 }
 \value{
 A dataframe containing each carpark's information and number of available lots
@@ -24,6 +29,6 @@ A simple Leaflet wrapper which enables users to plot the data retrieved from the
 \examples{
 \donttest{
 mydata <- getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
-plotSGMap(mydata, cluster = FALSE, color = 'black')
+plotSGMap(mydata, cluster = FALSE, color = 'black', size = 7, alpha = 0.7)
 }
 }
