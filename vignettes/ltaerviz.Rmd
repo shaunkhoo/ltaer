@@ -22,18 +22,20 @@ As mentioned in the introduction, the main purpose of the `ltaer` package is to 
 
 Visualising geospatial data is generally more challenging that running visualisations on the `ggplot2` package, primarily because there are more things one has to deal with. The good thing is that there are many R packages that greatly simplify the amount we need to learn and do to create effective visualisations.
 
-Hence, this vignette aims to provide some suggestions and tips in visualising the data obtained from the various APIs. I begin first with introducing `plotSGMap`, a Leaflet wrapper provided in this package that enables you to plot your data with minimal coding.
+Hence, this vignette aims to provide some suggestions and tips in visualising the data obtained from the various APIs. I begin first with introducing `exploreSGMap`, a Leaflet wrapper provided in this package that enables you to plot your data with minimal coding.
 
-## 1. Using plotSGMap
+## 1. Using exploreSGMap
 
-`plotSGMap` is a convenient Leaflet wrapper which allows users to quickly plot geospatial data on an interactive map for data exploration. A picture speaks a thousand words, so...
+`exploreSGMap` is a convenient Leaflet wrapper which allows users to quickly plot geospatial data on an interactive map for data exploration. A picture speaks a thousand words, so...
 
 ``` {r}
 library(ltaer)
-plotSGMap(bus_stops, popup = 'Description', cluster = FALSE, colour = 'green', alpha = 1, size = 1)
+exploreSGMap(bus_stops, popup = 'Description', cluster = FALSE, colour = 'green', alpha = 1, size = 1)
 ```
 
-The key contributions here are twofold: users do not need any knowledge of `leaflet`, and `ggplot2` grammar is used here for familiarity (`alpha` and `size` are not `leaflet` arguments). The motivation here is to enable users to have a quick look at the data from a spatial perspective, and thus to quickly get to grips with the data they have received from the APIs.
+The function above plots all the bus stops in Singapore on an interactive map, with each green-coloured dot representing a single bus stop. Clicking on the dot (which is difficult given its small size)  will produce a pop up with the bus stop description as provided by LTA.
+
+The key contributions here are twofold: users do not need any knowledge of `leaflet`, and `ggplot2` syntax is used here for familiarity (`alpha` and `size` are not `leaflet` arguments). The motivation here is to enable users to have a quick look at the data from a spatial perspective, and thus to quickly get to grips with the data they have received from the APIs.
 
 Here is an explanation of the various arguments in the function:
 
@@ -44,7 +46,43 @@ Here is an explanation of the various arguments in the function:
 * `alpha`: How opaque each point is. You can set it to 1 for fully opaque, and 0 for fully transparent - the default here is 0.5.
 * `size`: How large each point is. This is set to 5 by default, although for more cluttered maps you may want a smaller value like 1.
 
+One important caveat: `exploreSGMap` is intended primarily as a visualisation tool for data exploration, rather than for building a final product. As such, the function only provides a few parameters for users to play with, rather than the full functionality offered by `leaflet`. I provide one example of how `leaflet` can be leveraged to produce excellent visualisations for a final product below.
 
+## 2. Using plotSGMap
+
+
+
+## 2. Creating interactive spatial visualisations
+
+Leaflet is one of the most popular tools for building interactive maps, and for good reason: you can create beautiful and informative maps that are interactive with minimal code and fuss. It has been used by various organisations such as The New York Times, FourSquare, and Github. `leaflet` is the package within R that enables you to create, design, and integrate Leaflet maps using just a few lines of code.
+
+Since `exploreSGMap` uses `leaflet` functions within its code, your RStudio will automatically install and load `leaflet` into your RStudio whenever you load `ltaer`. As such, you do not have to worry about installing more packages.
+
+I provide one working example below, using the taxi availability data that is already preloaded into the R package.
+
+```{r}
+library(leaflet)
+taxi_avail %>%
+  leaflet() %>%
+  addProviderTiles('CartoDB.DarkMatterNoLabels') %>%
+  setView(lat = 1.3521, lng = 103.8298, zoom = 11) %>%
+  addCircleMarkers(radius = 1, weight = 1, opacity = 0.7, color = "yellow")
+```
+
+I will not delve into a `leaflet` tutorial here - there are many websites which already do this - but the motivation here is to give you a better idea of what can be achieved by visualising LTA data on `leaflet`. You will notice that some of the syntax is different (opacity vs alpha, for example), but they are all quite intuitive and easy to pick up as long as you have some experience with `ggplot2`.
+
+## 3. Creating static spatial visualisations
+
+One problem with `leaflet`, and interactive visualisations in general, is that it can only be embedded in HTML or Markdown documents. This is fine for people who are looking to publish their visualisations online and have the necessary know-how, but what if you wanted to display this in a Word document (as part of a report) or some PowerPoint slides? It would be self-defeating to create an interactive visualisation but having to display it as a mere screenshot.
+
+A more straightforward method here would just be to create a static spatial visualisations. Thanks to R's large open-source community, there is just the package for this: `ggmap`.
+
+```{r}
+library(ggmap)
+
+
+ggmap()
+```
 
 
 
