@@ -5,14 +5,14 @@
 #' @param dataframe The dataframe containing the latitude/longitude data
 #' @param popup Name of the variable in the dataframe to be displayed when a marker is clicked on - default is NA
 #' @param cluster Whether to cluster the markers or not - default is FALSE
-#' @param colour Color of the markers - default is 'red'
+#' @param colour Colour of the markers - default is 'red'
 #' @param size Size of the markers - default is 5
 #' @param alpha Opacity of the markers - default is 0.5
 #' @return A dataframe containing each carpark's information and number of available lots
 #' @examples
 #' \donttest{
 #' mydata <- getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
-#' plotSGMap(mydata, cluster = FALSE, color = 'black', size = 7, alpha = 0.7)
+#' plotSGMap(mydata, cluster = FALSE, colour = 'black', size = 7, alpha = 0.7)
 #' }
 #' @import leaflet
 #' @import htmltools
@@ -32,7 +32,7 @@ plotSGMap <- function(dataframe, popup = NA, cluster = FALSE, colour = "red", si
   if (cluster == TRUE & !is.na(popup)) {
     popup_var <- dataframe[[popup]]
     map %>%
-      leaflet::addCircleMarkers(color = color,
+      leaflet::addCircleMarkers(color = colour,
                      fillColor = color,
                      opacity = alpha,
                      fillOpacity = alpha,
@@ -42,7 +42,7 @@ plotSGMap <- function(dataframe, popup = NA, cluster = FALSE, colour = "red", si
                      popup = ~htmltools::htmlEscape(popup_var))
   } else if (cluster == TRUE & is.na(popup)) {
     map %>%
-      leaflet::addCircleMarkers(color = color,
+      leaflet::addCircleMarkers(color = colour,
                        fillColor = color,
                        opacity = alpha,
                        fillOpacity = alpha,
@@ -52,7 +52,7 @@ plotSGMap <- function(dataframe, popup = NA, cluster = FALSE, colour = "red", si
   } else if (cluster == FALSE & !is.na(popup)) {
     popup_var <- dataframe[[popup]]
     map %>%
-      leaflet::addCircleMarkers(color = color,
+      leaflet::addCircleMarkers(color = colour,
                                  radius = size,
                                  weight = size,
                                  opacity = alpha,
@@ -60,7 +60,7 @@ plotSGMap <- function(dataframe, popup = NA, cluster = FALSE, colour = "red", si
                                  popup = ~htmltools::htmlEscape(popup_var))
   } else if (cluster == FALSE & is.na(popup)) {
     map %>%
-      leaflet::addCircleMarkers(color = color,
+      leaflet::addCircleMarkers(color = colour,
                                 opacity = alpha,
                                 fillOpacity = alpha,
                                 radius = size,
