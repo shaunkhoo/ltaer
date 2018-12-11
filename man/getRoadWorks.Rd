@@ -16,5 +16,7 @@ A dataframe containing the details for each current or planned road work, such a
 Returns all road works currently being carried out or scheduled to be carried out.
 }
 \examples{
+\donttest{
 getRoadWorks(Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

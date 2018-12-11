@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing the latitude and longitude information for all the taxis available for hire.
 #' @examples
+#' \donttest{
 #' getTaxiAvail(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @export getTaxiAvail
 

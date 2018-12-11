@@ -16,5 +16,7 @@ A dataframe containing each stretch of road, speed bands, and location data
 Returns current traffic speeds on expressways and major roads, expressed in speed bands
 }
 \examples{
+\donttest{
 getTrafficSpeedBands(Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

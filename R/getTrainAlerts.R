@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return If there is a train service disruption, it will return a dataframe containing the alerts and their respective details.
 #' @examples
+#' \donttest{
 #' getTrainAlerts(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @export getTrainAlerts
 

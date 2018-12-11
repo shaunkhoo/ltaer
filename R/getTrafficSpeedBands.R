@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing each stretch of road, speed bands, and location data
 #' @examples
+#' \donttest{
 #' getTrafficSpeedBands(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @export getTrafficSpeedBands
 

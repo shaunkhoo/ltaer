@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing each camera's ID, location, and link to the image
 #' @examples
+#' \donttest{
 #' getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @export getTrafficImages
 

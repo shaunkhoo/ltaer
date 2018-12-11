@@ -16,5 +16,7 @@ A dataframe containing the latitude and longitude information for all the taxis 
 Returns the coordinates for all taxis that are currently available for hire. Does not include 'hired' or 'busy' taxis.
 }
 \examples{
+\donttest{
 getTaxiAvail(Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

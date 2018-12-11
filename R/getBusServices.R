@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing all the outputs from the Bus Routes API, such as the operator, stop sequence, bus stop code, and distance travelled.
 #' @examples
+#' \donttest{
 #' getBusRoutes(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @import dplyr
 #' @export getBusServices

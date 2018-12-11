@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing the details for each current or planned road work, such as the start date, end date, and road name
 #' @examples
+#' \donttest{
 #' getRoadWorks(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @export getRoadWorks
 

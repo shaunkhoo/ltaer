@@ -16,5 +16,7 @@ A dataframe containing the alerts for each traffic light fault, such as the type
 Returns alerts of traffic lights that are either currently faulty or are undergoing scheduled maintenance.
 }
 \examples{
+\donttest{
 getFaultyTrafficLights(Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

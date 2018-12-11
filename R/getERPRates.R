@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing ERP rates for each vehicle type, ERP rate timing, and zone.
 #' @examples
+#' \donttest{
 #' getERPRates(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @export getERPRates
 

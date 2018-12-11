@@ -18,5 +18,7 @@ A dataframe containing all the outputs from the Bus Timings API, including the s
 Returns real-time estimated bus arrival timings for the specified bus stops in Singapore. Note that this function may not return anything between 1.00am and 5.00am SG time (GMT+8)
 }
 \examples{
+\donttest{
 getBusTimings(c('11111', '22222', '33333'), Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

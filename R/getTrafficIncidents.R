@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing each traffic incident, its type, coordinates, and description message
 #' @examples
+#' \donttest{
 #' getTrafficIncidents(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @export getTrafficIncidents
 

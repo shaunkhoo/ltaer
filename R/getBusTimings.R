@@ -6,7 +6,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing all the outputs from the Bus Timings API, including the service number, estimated arrival time, load, and type for the next three buses.
 #' @examples
+#' \donttest{
 #' getBusTimings(c('11111', '22222', '33333'), Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @export getBusTimings
 

@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing each traffic advisory message and its coordinates
 #' @examples
+#' \donttest{
 #' getVMS(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @export getVMS
 

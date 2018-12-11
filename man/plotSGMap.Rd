@@ -22,6 +22,8 @@ A dataframe containing each carpark's information and number of available lots
 A simple Leaflet wrapper which enables users to plot the data retrieved from the LTA APIs on an interactive map of Singapore. Some simple options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please rename the latitude and longitude columns to 'Latitude' and 'Longitude' respectively.
 }
 \examples{
+\donttest{
 mydata <- getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
 plotSGMap(mydata, cluster = FALSE, color = 'black')
+}
 }

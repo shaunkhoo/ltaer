@@ -16,5 +16,7 @@ A dataframe containing each camera's ID, location, and link to the image
 Returns links to images of live traffic conditions along Singapore's expressways and checkpoints with Malaysia.
 }
 \examples{
+\donttest{
 getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

@@ -16,5 +16,7 @@ A dataframe containing all the outputs from the Bus Routes API, such as the oper
 Returns information on all bus routes in Singapore that are currently in operation.
 }
 \examples{
+\donttest{
 getBusRoutes(Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

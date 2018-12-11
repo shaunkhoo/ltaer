@@ -16,5 +16,7 @@ A dataframe containing ERP rates for each vehicle type, ERP rate timing, and zon
 Provides the ERP rates for all vehicle types across all timings and all zones.
 }
 \examples{
+\donttest{
 getERPRates(Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

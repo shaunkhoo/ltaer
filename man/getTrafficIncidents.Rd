@@ -16,5 +16,7 @@ A dataframe containing each traffic incident, its type, coordinates, and descrip
 Returns incidents currently happening on the roads, such as accidents, vehicle breakdowns etc.
 }
 \examples{
+\donttest{
 getTrafficIncidents(Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

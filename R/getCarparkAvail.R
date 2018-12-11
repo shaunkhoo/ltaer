@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing each carpark's information and number of available lots
 #' @examples
+#' \donttest{
 #' getCarparkAvail(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @import dplyr
 #' @import stringr

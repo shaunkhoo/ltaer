@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing the alerts for each traffic light fault, such as the type of failure and start date-time
 #' @examples
+#' \donttest{
 #' getFaultyTrafficLights(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @export getFaultyTrafficLights
 

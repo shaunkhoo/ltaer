@@ -8,8 +8,10 @@
 #' @param color Color of the markers - default is 'red'
 #' @return A dataframe containing each carpark's information and number of available lots
 #' @examples
+#' \donttest{
 #' mydata <- getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
 #' plotSGMap(mydata, cluster = FALSE, color = 'black')
+#' }
 #' @import leaflet
 #' @import htmltools
 #' @import dplyr

@@ -5,7 +5,9 @@
 #' @param api_key API key for LTA's Datamall
 #' @return A dataframe containing all the outputs from the Bus Routes API, such as the operator, stop sequence, bus stop code, and distance travelled.
 #' @examples
+#' \donttest{
 #' getBusRoutes(Sys.getenv('LTA_DATAMALL_KEY'))
+#' }
 #' @import httr
 #' @import dplyr
 #' @export getBusRoutes
@@ -21,7 +23,7 @@ getBusRoutes <- function(api_key) {
     message("Successful API call for all bus routes. Processing page 1...")
   }
   output <- data.frame(matrix(nrow = 0, ncol = 12))
-  busroutes_list <- content(result)[[2]]
+  busroutes_list <- httr::content(result)[[2]]
   for (i in 1:length(busroutes_list)) {
     interim <- busroutes_list[[i]]
     interim[sapply(interim, is.null)] <- 0

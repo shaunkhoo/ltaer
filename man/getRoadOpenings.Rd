@@ -16,5 +16,7 @@ A dataframe containing the details for each planned road opening, such as the st
 Returns all planned road openings.
 }
 \examples{
+\donttest{
 getRoadOpenings(Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

@@ -16,5 +16,7 @@ A dataframe containing each traffic advisory message and its coordinates
 Returns traffic advisories about current traffic conditions that are displayed on EMAS signboards along expressways and major roads.
 }
 \examples{
+\donttest{
 getVMS(Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }

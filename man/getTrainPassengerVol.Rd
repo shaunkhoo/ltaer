@@ -18,5 +18,7 @@ A link from which the user can download the CSV file.
 Returns a link from LTA that enables the user to download a CSV file containing a month's worth of data on passenger volume for each MRT station.
 }
 \examples{
+\donttest{
 getTrainPassengerVol(Sys.Date()-60, Sys.getenv('LTA_DATAMALL_KEY'))
+}
 }
