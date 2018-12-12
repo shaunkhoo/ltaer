@@ -1,7 +1,6 @@
 ---
 title: "ltaer: Visualisations"
 author: "Shaun Khoo"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
@@ -78,14 +77,14 @@ Since `exploreSGMap` uses `leaflet` functions within its code, your RStudio will
 
 I provide one working example below, using the same bus stops data in the package.
 
-```{r}
+```{r message = FALSE, warning = FALSE}
 library(leaflet)
 library(dplyr)
 bus_stops %>%
   leaflet() %>%
   addProviderTiles('CartoDB.DarkMatterNoLabels') %>%
   setView(lat = 1.3521, lng = 103.8298, zoom = 11) %>%
-  addCircleMarkers(radius = 1, weight = 1, opacity = 0.7, popup = 'Description', color = "yellow")
+  addCircleMarkers(radius = 1, weight = 1, opacity = 0.7, popup = ~Description, color = "yellow")
 ```
 
 I will not delve into a `leaflet` tutorial here - there are many websites which already do this - but the motivation here is to give you a better idea of what can be achieved by visualising LTA data on `leaflet`. You will notice that some of the syntax is different (opacity vs alpha, for example), but they are all quite intuitive and easy to pick up as long as you have some experience with `ggplot2`.
@@ -98,7 +97,7 @@ A more straightforward method here would just be to create a static spatial visu
 
 I provide one example of how `ggmap` can be used to visualise the data from the Carpark Availability API below.
 
-```{r warning=FALSE}
+```{r warning = FALSE, message = FALSE}
 library(ggmap)
 ggmap(sg_map, darken=c('0.70', '#030d2f')) + geom_point(data = carpark_avail, aes(x = lng, y = lat, colour = AvailableLots), size = 1, alpha = 0.7) + xlab('') + ylab('') + labs(colour = 'Available Lots') + 
   scale_colour_gradient(low = '#FFFFFF', high = '#df2222') + 
@@ -118,15 +117,30 @@ As with `leaflet`, there are many excellent tutorials and resources online that 
 
 Spatial visualisation is interesting because it links location information (coordinates) to some interesting data about that location (income, traffic, age, etc), and through that we can gain some insights about our neighbourhood and our city. While using the data from the LTA APIs directly can already be pretty good, why not go a step further to link a few datasets together?
 
-In the example below, I link the bus stop availability data with 
+In the example below, I join the bus stop availability data for October 2018 (weekdays only) with bus stops data, and thus produce a dataset which contains location and volume data for each bus stop in Singapore. This is also available in this package as `bus_ridership_cleaned`. Then, we can visualise this on a static map to see how which bus stops have the highest number of people tapping in. 
+
+``` {r message = FALSE, warning = FALSE}
+ggmap(sg_map, darken=c('0.70', '#030d2f')) + 
+  geom_point(data = bus_ridership_cleaned, aes(x = Longitude, y = Latitude, size = Total_in, color = Total_in, alpha = Total_in)) 
+  + xlab('') + ylab('') + labs(colour = 'Total tap in') + 
+  scale_size(range = c(0.5, 10)) +
+  scale_alpha_continuous(range = c(0.05, 1)) +
+  scale_colour_gradient(low = '#FFFFFF', high = '#df2222') + 
+  guides(alpha = FALSE, size = FALSE) +
+  theme(axis.line = ggplot2::element_blank(),
+        axis.text = ggplot2::element_blank(),
+        axis.ticks = ggplot2::element_blank(),
+        plot.margin = ggplot2::margin(0, 0, -1, -1, 'cm'),
+        legend.position = c(0.9, 0.25),
+        legend.title = element_text(colour = 'white', size = 10),
+        legend.text = element_text(colour = 'white', size = 7),
+        legend.background = element_rect(fill = 'black', size = 0))
+```
+
+Unsurprisingly, the largest volume of tap ins are at the bus interchanges located in large residential neighbourhoods, where most people are getting onto buses for the final leg of their commute home. Of course, this data can also be visualised in many other ways, and this example is meant to show you how the data can be joined together to gleam even more insights.
 
 ## 5. Next Steps
 
-Visualising spatial data is more challenging because you have to work with more moving parts (basemap, coordinates, spatial objects). Yet, it is also incredibly rewarding when you produce a good spatial visualisation that communicates your message effectively and looks great. Try both `ggmap` and `leaflet` out and see how it goes for you.
+Visualising spatial data is more challenging because you have to work with more moving parts (basemap, coordinates, spatial objects). Yet, it is also incredibly rewarding when you produce a good spatial visualisation that communicates your message effectively and looks great. Try both `ggmap` and `leaflet` out and see how it goes for you. If you want to move beyond plotting points, and into plotting lines and areas (called polylines and polygons in R), then you should have a look at the `sf` and `sp` package which rely on the same dataframe structure to handle spatial data. Thanks to R's wonderful open-source community, there are plenty of packages out there which will most likely cater to your needs, so do have a look online first before trying to do it yourself manually.
 
-If you are still stuck as to how you might visualise some of the data provided by LTA's APIs, here are some suggestions which you can consider taking up:
-
-* Using the 
-
-
-
+All the best with your visualisations!
