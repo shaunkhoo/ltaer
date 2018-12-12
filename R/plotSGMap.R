@@ -1,20 +1,40 @@
-#' @title Explore data on an interactive map of Singapore
+#' @title Plot data on a static map of Singapore
 #'
-#' @description A simple Leaflet wrapper which enables users to plot the data retrieved from the LTA APIs on an interactive map of Singapore. Some simple options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please rename the latitude and longitude columns to 'Latitude' and 'Longitude' respectively.
+#' @description A simple ggmap wrapper which enables users to plot the data retrieved from the LTA APIs on a static map of Singapore. Some simple options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please rename the latitude and longitude columns to 'Latitude' and 'Longitude' respectively.
 #'
 #' @param dataframe The dataframe containing the latitude/longitude data
-#' @param popup Name of the variable in the dataframe to be displayed when a marker is clicked on - default is NA
-#' @param cluster Whether to cluster the markers or not - default is FALSE
 #' @param colour Colour of the markers - default is 'red'
-#' @param size Size of the markers - default is 5
+#' @param size Size of the markers - default is 1
 #' @param alpha Opacity of the markers - default is 0.5
-#' @return A dataframe containing each carpark's information and number of available lots
+#' @param darken How dark the base map  should be - default is 0
+#' @return A static Singapore map with the coordinates plotted
 #' @examples
 #' \donttest{
-#' mydata <- getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
-#' exploreSGMap(mydata, cluster = FALSE, colour = 'black', size = 7, alpha = 0.7)
+#' mydata <- getTrafficImages(mykey)
+#' plotSGMap(mydata, cluster = FALSE, colour = 'black', size = 7, alpha = 0.7)
 #' }
-#' @import leaflet
-#' @import htmltools
-#' @import dplyr
-#' @export exploreSGMap
+#' @import ggmap
+#' @import ggplot2
+#' @export plotSGMap
+
+plotSGMap <- function(dataframe, colour = 'red', size = 1, alpha = 0.5, darken = 0) {
+
+  if (!any(grepl('\\blatitude\\b|\\blat\\b', colnames(dataframe), ignore.case = TRUE)) |
+          !any(grepl('\\blongitude\\b|\\blng\\b', colnames(dataframe), ignore.case = TRUE))) {
+    stop(message("Please label your latitude and longitude columns correctly as 'Latitude' and 'Longitude'."))
+  }
+
+  lat <- unlist(dataframe[grepl('\\blatitude\\b|\\blat\\b', colnames(dataframe), ignore.case = TRUE)], use.names=FALSE)
+  lng <- unlist(dataframe[grepl('\\blongitude\\b|\\blng\\b', colnames(dataframe), ignore.case = TRUE)], use.names=FALSE)
+
+  plot <- ggmap:: ggmap(ltaer::sg_map, darken=c(darken, "black")) +
+            ggplot2:: geom_point(data = dataframe, aes(x = lng, y = lat), colour =  colour, size = size, alpha = alpha) +
+            ggplot2:: xlab('') +
+            ggplot2:: ylab('') +
+            ggplot2:: theme(axis.line = element_blank(),
+                            axis.text = element_blank(),
+                            axis.ticks = element_blank(),
+                            panel.background = element_rect(fill='white',colour='white'))
+
+  return(plot)
+}

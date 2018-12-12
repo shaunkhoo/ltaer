@@ -8,7 +8,7 @@
 #' @param colour Colour of the markers - default is 'red'
 #' @param size Size of the markers - default is 5
 #' @param alpha Opacity of the markers - default is 0.5
-#' @return A dataframe containing each carpark's information and number of available lots
+#' @return An interactive Singapore map with the coordinates plotted
 #' @examples
 #' \donttest{
 #' mydata <- getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
@@ -33,7 +33,7 @@ exploreSGMap <- function(dataframe, popup = NA, cluster = FALSE, colour = "red",
     popup_var <- dataframe[[popup]]
     map %>%
       leaflet::addCircleMarkers(color = colour,
-                     fillColor = color,
+                     fillColor = colour,
                      opacity = alpha,
                      fillOpacity = alpha,
                      radius = size,
@@ -43,7 +43,7 @@ exploreSGMap <- function(dataframe, popup = NA, cluster = FALSE, colour = "red",
   } else if (cluster == TRUE & is.na(popup)) {
     map %>%
       leaflet::addCircleMarkers(color = colour,
-                       fillColor = color,
+                       fillColor = colour,
                        opacity = alpha,
                        fillOpacity = alpha,
                        radius = size,
@@ -53,6 +53,7 @@ exploreSGMap <- function(dataframe, popup = NA, cluster = FALSE, colour = "red",
     popup_var <- dataframe[[popup]]
     map %>%
       leaflet::addCircleMarkers(color = colour,
+                                fillColor = colour,
                                  radius = size,
                                  weight = size,
                                  opacity = alpha,
@@ -61,6 +62,7 @@ exploreSGMap <- function(dataframe, popup = NA, cluster = FALSE, colour = "red",
   } else if (cluster == FALSE & is.na(popup)) {
     map %>%
       leaflet::addCircleMarkers(color = colour,
+                                fillColor = colour,
                                 opacity = alpha,
                                 fillOpacity = alpha,
                                 radius = size,

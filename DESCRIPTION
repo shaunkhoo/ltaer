@@ -11,7 +11,9 @@ Imports: httr,
     dplyr,
     stringr,
     leaflet,
-    htmltools
+    htmltools,
+    ggmap,
+    ggplot2
 RoxygenNote: 6.1.0.9000
 Suggests: knitr,
     rmarkdown

@@ -21,7 +21,7 @@ exploreSGMap(dataframe, popup = NA, cluster = FALSE, colour = "red",
 \item{alpha}{Opacity of the markers - default is 0.5}
 }
 \value{
-A dataframe containing each carpark's information and number of available lots
+An interactive Singapore map with the coordinates plotted
 }
 \description{
 A simple Leaflet wrapper which enables users to plot the data retrieved from the LTA APIs on an interactive map of Singapore. Some simple options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please rename the latitude and longitude columns to 'Latitude' and 'Longitude' respectively.

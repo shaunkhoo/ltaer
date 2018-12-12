@@ -2,33 +2,31 @@
 % Please edit documentation in R/plotSGMap.R
 \name{plotSGMap}
 \alias{plotSGMap}
-\title{Plot data on a map of Singapore}
+\title{Plot data on a static map of Singapore}
 \usage{
-plotSGMap(dataframe, popup = NA, cluster = FALSE, colour = "red",
-  size = 5, alpha = 0.5)
+plotSGMap(dataframe, colour = "red", size = 1, alpha = 0.5,
+  darken = 0)
 }
 \arguments{
 \item{dataframe}{The dataframe containing the latitude/longitude data}
 
-\item{popup}{Name of the variable in the dataframe to be displayed when a marker is clicked on - default is NA}
-
-\item{cluster}{Whether to cluster the markers or not - default is FALSE}
-
 \item{colour}{Colour of the markers - default is 'red'}
 
-\item{size}{Size of the markers - default is 5}
+\item{size}{Size of the markers - default is 1}
 
 \item{alpha}{Opacity of the markers - default is 0.5}
+
+\item{darken}{How dark the base map  should be - default is 0}
 }
 \value{
-A dataframe containing each carpark's information and number of available lots
+A static Singapore map with the coordinates plotted
 }
 \description{
-A simple Leaflet wrapper which enables users to plot the data retrieved from the LTA APIs on an interactive map of Singapore. Some simple options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please rename the latitude and longitude columns to 'Latitude' and 'Longitude' respectively.
+A simple ggmap wrapper which enables users to plot the data retrieved from the LTA APIs on a static map of Singapore. Some simple options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please rename the latitude and longitude columns to 'Latitude' and 'Longitude' respectively.
 }
 \examples{
 \donttest{
-mydata <- getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
+mydata <- getTrafficImages(mykey)
 plotSGMap(mydata, cluster = FALSE, colour = 'black', size = 7, alpha = 0.7)
 }
 }
