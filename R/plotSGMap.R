@@ -28,14 +28,13 @@ plotSGMap <- function(dataframe, colour = 'red', size = 1, alpha = 0.5, darken =
   lng <- unlist(dataframe[grepl('\\blongitude\\b|\\blng\\b', colnames(dataframe), ignore.case = TRUE)], use.names=FALSE)
 
   plot <- ggmap:: ggmap(ltaer::sg_map, darken=c(darken, "black")) +
-            ggplot2:: geom_point(data = dataframe, aes(x = lng, y = lat), colour =  colour, size = size, alpha = alpha) +
+            ggplot2:: geom_point(data = dataframe, ggplot2::aes(x = lng, y = lat), colour =  colour, size = size, alpha = alpha) +
             ggplot2:: xlab('') +
             ggplot2:: ylab('') +
-            ggplot2:: theme(axis.line = element_blank(),
-                            axis.text = element_blank(),
-                            axis.ticks = element_blank(),
-                            panel.background = element_rect(fill='white',colour='white',
-                            plot.margin = unit(c(0, 0, -1, -1), 'lines')))
+            ggplot2:: theme(axis.line = ggplot2::element_blank(),
+                            axis.text = ggplot2::element_blank(),
+                            axis.ticks = ggplot2::element_blank(),
+                            plot.margin = ggplot2::margin(0, 0, -1, -1, 'cm'))
 
   return(plot)
 }
