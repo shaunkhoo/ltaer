@@ -50,7 +50,7 @@ One important caveat: `exploreSGMap` is intended primarily as a visualisation to
 
 ## 2. Using plotSGMap
 
-`plotSGMap` is an easy-to-use `ggmap` wrapper to enable basic visualisations of the spatial data retrieved from the LTA APIs. Here is an example below: 
+`plotSGMap` is an easy-to-use `ggmap` wrapper to enable basic visualisations of the spatial data retrieved from the LTA APIs. Here is an example below:
 
 ```{r message=FALSE}
 plotSGMap(taxi_avail, colour = '#f5f66b', alpha = 1, size = 1, darken = 0.5)
@@ -70,13 +70,13 @@ As above, here is an explanation of the various arguments in the function:
 
 The same caveat applies as with `exploreSGMap`: this function is intended primarily as a visualisation tool for data exploration. See below for an example of how to use `ggmap` to plot something with more details that can be used as data products.
 
-## 2. Creating interactive spatial visualisations
+## 3. Creating interactive spatial visualisations
 
 Leaflet is one of the most popular tools for building interactive maps, and for good reason: you can create beautiful and informative maps that are interactive with minimal code and fuss. It has been used by various organisations such as The New York Times, FourSquare, and Github. `leaflet` is the package within R that enables you to create, design, and integrate Leaflet maps using just a few lines of code.
 
 Since `exploreSGMap` uses `leaflet` functions within its code, your RStudio will automatically install `leaflet` into your RStudio whenever you load `ltaer`. As such, you do not have to worry about installing more packages.
 
-I provide one working example below, using the taxi availability data that is already preloaded into the R package.
+I provide one working example below, using the same bus stops data in the package.
 
 ```{r}
 library(leaflet)
@@ -85,24 +85,48 @@ bus_stops %>%
   leaflet() %>%
   addProviderTiles('CartoDB.DarkMatterNoLabels') %>%
   setView(lat = 1.3521, lng = 103.8298, zoom = 11) %>%
-  addCircleMarkers(radius = 1, weight = 1, opacity = 0.7, color = "yellow")
+  addCircleMarkers(radius = 1, weight = 1, opacity = 0.7, popup = 'Description', color = "yellow")
 ```
 
 I will not delve into a `leaflet` tutorial here - there are many websites which already do this - but the motivation here is to give you a better idea of what can be achieved by visualising LTA data on `leaflet`. You will notice that some of the syntax is different (opacity vs alpha, for example), but they are all quite intuitive and easy to pick up as long as you have some experience with `ggplot2`.
 
-## 3. Creating static spatial visualisations
+## 4. Creating static spatial visualisations
 
 One drawback of `leaflet`, and interactive visualisations in general, is that it can only be embedded in HTML or Markdown documents. This is fine for people who are looking to publish their visualisations online and have the necessary know-how, but what if you wanted to display this in a Word document (as part of a report) or some PowerPoint slides? It would be self-defeating to create an interactive visualisation but having to display it as a mere screenshot.
 
 A more straightforward method here would just be to create a static spatial visualisations using `ggmap`, as demonstrated earlier using the `plotSGMap` function that serves as a wrapper for the `ggmap` package. Similarly, `ggmap` is automatically installed into your RStudio whenever you load `ltaer`.
 
-I provide one example of how 
+I provide one example of how `ggmap` can be used to visualise the data from the Carpark Availability API below.
 
-```{r}
+```{r warning=FALSE}
+library(ggmap)
+ggmap(sg_map, darken=c('0.70', '#030d2f')) + geom_point(data = carpark_avail, aes(x = lng, y = lat, colour = AvailableLots), size = 1, alpha = 0.7) + xlab('') + ylab('') + labs(colour = 'Available Lots') + 
+  scale_colour_gradient(low = '#FFFFFF', high = '#df2222') + 
+  theme(axis.line = ggplot2::element_blank(),
+        axis.text = ggplot2::element_blank(),
+        axis.ticks = ggplot2::element_blank(),
+        plot.margin = ggplot2::margin(0, 0, -1, -1, 'cm'),
+        legend.position = c(0.9, 0.25),
+        legend.title = element_text(colour = 'white', size = 10),
+        legend.text = element_text(colour = 'white', size = 7),
+        legend.background = element_rect(fill = 'black', size = 0))
 ```
 
+As with `leaflet`, there are many excellent tutorials and resources online that can teach you how to use `ggmap` to produce great spatial visualisations. Since `ggmap` uses the same grammar as `ggplot2`, it is fairly easy to pick it up if you have some understanding of `ggplot2`, so there  is no reason not to step beyond the simple interface provided by `plotSGMap` and to dive into `ggmap` yourself.
 
+## 5. Putting multiple datasets together
 
+Spatial visualisation is interesting because it links location information (coordinates) to some interesting data about that location (income, traffic, age, etc), and through that we can gain some insights about our neighbourhood and our city. While using the data from the LTA APIs directly can already be pretty good, why not go a step further to link a few datasets together?
+
+In the example below, I link the bus stop availability data with 
+
+## 5. Next Steps
+
+Visualising spatial data is more challenging because you have to work with more moving parts (basemap, coordinates, spatial objects). Yet, it is also incredibly rewarding when you produce a good spatial visualisation that communicates your message effectively and looks great. Try both `ggmap` and `leaflet` out and see how it goes for you.
+
+If you are still stuck as to how you might visualise some of the data provided by LTA's APIs, here are some suggestions which you can consider taking up:
+
+* Using the 
 
 
 
