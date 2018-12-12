@@ -56,6 +56,11 @@ getCarparkAvail <- function(api_key) {
   output_final <- output %>%
     dplyr::mutate(lat = as.numeric(stringr::str_split(output$Location, "\\s", simplify=TRUE)[,1])) %>%
     dplyr::mutate(lng = as.numeric(stringr::str_split(output$Location, "\\s", simplify=TRUE)[,2]))
-  message('API call complete. Number of carparks returned: ', nrow(output))
+  output_final$Development  <- as.character(output_final$Development)
+  output_final$AvailableLots <- as.numeric(as.character(output_final$AvailableLots))
+  output_final$Agency <- as.character(output_final$Agency)
+  output_final$LotType <- as.character(output_final$LotType)
+
+  message('API call complete. Number of carparks returned: ', nrow(output_final))
   return(output_final)
 }

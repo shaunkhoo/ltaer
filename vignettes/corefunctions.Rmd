@@ -74,7 +74,6 @@ This API returns service information for all buses currently in operation in Sin
 `getBusServices` is the wrapper function for this API, and takes in the API key as its only argument.
 
 ```{r warning=FALSE}
-bus_services <- getBusServices(Sys.getenv('LTA_DATAMALL_KEY'))
 
 # Note that I've transposed the dataframe (the columns are the rows and vice versa) for clarity of presentation.
 knitr::kable(t(bus_services[1:9,]))
@@ -101,7 +100,6 @@ This API returns information for all bus stops currently being serviced by buses
 `getBusStops` is the wrapper function for this API, and takes in the API key as its only argument.
 
 ```{r message=FALSE}
-bus_stops <- getBusStops(Sys.getenv('LTA_DATAMALL_KEY'))
 knitr::kable(head(bus_stops))
 ```
 
@@ -123,7 +121,6 @@ This API returns the coordinates for all available taxis that are available for 
 `getTaxiAvail` is the wrapper function for this API, and takes in the API key as its only argument.
 
 ```{r message=FALSE}
-taxi_avail <- getTaxiAvail(Sys.getenv('LTA_DATAMALL_KEY'))
 knitr::kable(head(taxi_avail))
 ```
 
@@ -134,7 +131,6 @@ This API returns the coordinates for all available taxis that are available for 
 `getTaxiAvail` is the wrapper function for this API, and takes in the API key as its only argument.
 
 ```{r message=FALSE}
-taxi_avail <- getTaxiAvail(Sys.getenv('LTA_DATAMALL_KEY'))
 knitr::kable(head(taxi_avail))
 ```
 
