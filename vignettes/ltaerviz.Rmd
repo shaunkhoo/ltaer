@@ -51,8 +51,7 @@ One important caveat: `exploreSGMap` is intended primarily as a visualisation to
 ## 2. Using plotSGMap
 
 ```{r message=FALSE}
-library(ggmap)
-ggmap(sg_map)
+plotSGMap(taxi_avail, colour = 'green', alpha = 1, size = 1, darken = 0.5)
 ```
 
 ## 2. Creating interactive spatial visualisations

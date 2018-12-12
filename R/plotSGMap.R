@@ -34,7 +34,8 @@ plotSGMap <- function(dataframe, colour = 'red', size = 1, alpha = 0.5, darken =
             ggplot2:: theme(axis.line = element_blank(),
                             axis.text = element_blank(),
                             axis.ticks = element_blank(),
-                            panel.background = element_rect(fill='white',colour='white'))
+                            panel.background = element_rect(fill='white',colour='white',
+                            plot.margin = unit(c(0, 0, -1, -1), 'lines')))
 
   return(plot)
 }
