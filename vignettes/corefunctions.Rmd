@@ -64,7 +64,7 @@ library(ltaer)
 # bus_arrivals <- getBusTimings(c('07531', '09047', '11239', '14151', '66451', '44289', '50021', '54269', '03019', '09022', '41029'), api_key = Sys.getenv('LTA_DATAMALL_KEY'))
 
 # Note that I've transposed the dataframe (the columns are the rows and vice versa) for clarity of presentation.
-knitr::kable(t(bus_arrivals[1:3,]))
+#knitr::kable(t(bus_arrivals[1:3,]))
 ```
 
 ## 2. Bus Services
@@ -76,7 +76,7 @@ This API returns service information for all buses currently in operation in Sin
 ```{r warning=FALSE}
 
 # Note that I've transposed the dataframe (the columns are the rows and vice versa) for clarity of presentation.
-knitr::kable(t(bus_services[1:9,]))
+#knitr::kable(t(bus_services[1:9,]))
 ```
 
 ## 3. Bus Routes
@@ -100,7 +100,7 @@ This API returns information for all bus stops currently being serviced by buses
 `getBusStops` is the wrapper function for this API, and takes in the API key as its only argument.
 
 ```{r message=FALSE}
-knitr::kable(head(bus_stops))
+#knitr::kable(head(bus_stops))
 ```
 
 ## 5. Passenger Volume (Buses)
@@ -121,7 +121,7 @@ This API returns the coordinates for all available taxis that are available for 
 `getTaxiAvail` is the wrapper function for this API, and takes in the API key as its only argument.
 
 ```{r message=FALSE}
-knitr::kable(head(taxi_avail))
+#knitr::kable(head(taxi_avail))
 ```
 
 ## 8. Carpark Availability
@@ -131,7 +131,7 @@ This API returns the coordinates for all available taxis that are available for 
 `getTaxiAvail` is the wrapper function for this API, and takes in the API key as its only argument.
 
 ```{r message=FALSE}
-knitr::kable(head(taxi_avail))
+#knitr::kable(head(taxi_avail))
 ```
 
 ## 9. ERP Rates
