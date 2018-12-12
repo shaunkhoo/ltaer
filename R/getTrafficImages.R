@@ -6,7 +6,7 @@
 #' @return A dataframe containing each camera's ID, location, and link to the image
 #' @examples
 #' \donttest{
-#' getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getTrafficImages(mykey)
 #' }
 #' @import httr
 #' @export getTrafficImages
@@ -53,9 +53,13 @@ getTrafficImages <- function(api_key) {
     num <- num + 1
   }
 
-  output$CameraID <- as.character(output$CameraID)
-  output$Latitude <- as.numeric(as.character(output$Latitude))
-  output$Longitude <- as.numeric(as.character(output$Longitude))
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
+  output$Latitude <- as.numeric(output$Latitude)
+  output$Longitude <- as.numeric(output$Longitude)
+
   message("API call successful. Number of traffic images found: ", nrow(output))
   return(output)
 }

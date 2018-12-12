@@ -1,3 +1,24 @@
+reference:
+  - title: "Core Functions"
+    desc: "Functions for connecting with LTA's APIs"
+    contents: 
+      - starts_with("get")
+  - title: "Visualisation Functions"
+    desc: "Functions for visualising data from LTA's APIs"
+    contents:
+      - starts_with("plot")
+      - starts_with("explore")
+  - title: "Data"
+    desc: "Sample data bundled together with the package"
+    contents:
+      - bus_arrivals
+      - bus_routes
+      - bus_stops
+      - bus_ridership_cleaned
+      - carpark_avail
+      - taxi_avail
+      - sg_map
+
 template:
   params:
     bootswatch: yeti

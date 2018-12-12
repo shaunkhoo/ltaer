@@ -11,11 +11,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introduction and Motivation  <img src="reference/figures/logo.png" align="right" height="278" width="240" style="margin:20px 40px"/> 
+## Introduction <img src="reference/figures/logo.png" align="right" height="278" width="240" style="margin:25px 40px"/> 
 
-The `ltaer` package (pronounced 'later') is a convenient R wrapper for the various transportation-related APIs offered by the Land Transport Authority of Singapore (also known as the LTA Datamall). Currently, most of the APIs are geared towards app developers who use these real-time data for their mobile offerings. Used correctly and collected over a longer period of time, the data from the APIs can also serve as a rich dataset for people who are keen on analysing transportation trends in Singapore.
+The `ltaer` package (pronounced 'later') is an API client R package that enables users to call the various transportation-related APIs offered by the Land Transport Authority of Singapore. Currently, most of these APIs are geared towards mobile app developers who provide their end-users with real-time information about bus arrivals or traffic conditions. If used correctly, the data from these APIs can also serve as a rich dataset for those keen on analysing transportation trends in Singapore.
 
-The key motivation behind this package is to make the data more accessible to a wider audience. While it is not difficult to call the API directly using the `httr` package on R, it does require a greater understanding of R and APIs that a casual user may not possess. An important part of open data is accessibility, and I hope that this package will constitute a small step towards that goal for Singapore.
+My main motivation behind creating this package is to make the data more accessible to a wider audience. While it is not difficult to call the API directly using the `httr` package on R, it requires a greater understanding of R and APIs that a beginner in R is unlikely to have. An important part of open data is accessibility, and I hope that this package will constitute a small step towards that goal for Singapore.
 
 ## How to use this website
 

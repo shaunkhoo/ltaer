@@ -17,6 +17,6 @@ Returns links to images of live traffic conditions along Singapore's expressways
 }
 \examples{
 \donttest{
-getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
+getTrafficImages(mykey)
 }
 }

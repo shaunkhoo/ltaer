@@ -10,7 +10,7 @@ exploreSGMap(dataframe, popup = NA, cluster = FALSE, colour = "red",
 \arguments{
 \item{dataframe}{The dataframe containing the latitude/longitude data}
 
-\item{popup}{Name of the variable in the dataframe to be displayed when a marker is clicked on - default is NA}
+\item{popup}{Variable to be displayed when a marker is clicked on - default is NA, needs to be a string of the variable name}
 
 \item{cluster}{Whether to cluster the markers or not - default is FALSE}
 
@@ -21,14 +21,14 @@ exploreSGMap(dataframe, popup = NA, cluster = FALSE, colour = "red",
 \item{alpha}{Opacity of the markers - default is 0.5}
 }
 \value{
-An interactive Singapore map with the coordinates plotted
+An interactive map of Singapore with the coordinates plotted as circular markers on the map
 }
 \description{
-A simple Leaflet wrapper which enables users to plot the data retrieved from the LTA APIs on an interactive map of Singapore. Some simple options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please rename the latitude and longitude columns to 'Latitude' and 'Longitude' respectively.
+A simple Leaflet wrapper which enables users to plot the data retrieved from the LTA APIs on an interactive map of Singapore. Some basic options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please obtain data for the coordinates and rename the respective columns to 'Latitude' and 'Longitude'.
 }
 \examples{
 \donttest{
-mydata <- getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
+mydata <- getTrafficImages(mykey)
 exploreSGMap(mydata, cluster = FALSE, colour = 'black', size = 7, alpha = 0.7)
 }
 }

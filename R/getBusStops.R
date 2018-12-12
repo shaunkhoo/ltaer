@@ -6,7 +6,7 @@
 #' @return A dataframe containing all the outputs from the Bus Stops API, such as the bus stop code, road name, description, and coordinates.
 #' @examples
 #' \donttest{
-#' getBusStops(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getBusStops(mykey)
 #' }
 #' @import httr
 #' @export getBusStops
@@ -51,11 +51,12 @@ getBusStops <- function(api_key) {
     num <- num + 1
   }
 
-  output$BusStopCode <- as.character(output$BusStopCode)
-  output$Latitude <- as.numeric(as.character(output$Latitude))
-  output$Longitude <- as.numeric(as.character(output$Longitude))
-  output$Description <- as.character(output$Description)
-  output$RoadName <- as.character(output$RoadName)
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
+  output$Latitude <- as.numeric(output$Latitude)
+  output$Longitude <- as.numeric(output$Longitude)
 
   message('API call complete. Number of bus stops returned: ', nrow(output))
   return(output)

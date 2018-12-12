@@ -6,7 +6,7 @@
 #' @return A dataframe containing the alerts for each traffic light fault, such as the type of failure and start date-time
 #' @examples
 #' \donttest{
-#' getFaultyTrafficLights(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getFaultyTrafficLights(mykey)
 #' }
 #' @import httr
 #' @export getFaultyTrafficLights
@@ -55,6 +55,11 @@ getFaultyTrafficLights <- function(api_key) {
       output <- rbind(output, output0)
       num <- num + 1
     }
+
+    for (col in colnames(output)) {
+      output[[col]] <- as.character(output[[col]])
+    }
+
     message("API call successful. Number of alerts for faulty traffic lights: ", nrow(output))
     return(output)
   }

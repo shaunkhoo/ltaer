@@ -17,6 +17,6 @@ Returns traffic advisories about current traffic conditions that are displayed o
 }
 \examples{
 \donttest{
-getVMS(Sys.getenv('LTA_DATAMALL_KEY'))
+getVMS(mykey)
 }
 }

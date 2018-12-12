@@ -6,7 +6,7 @@
 #' @return A dataframe containing the details for each current or planned road work, such as the start date, end date, and road name
 #' @examples
 #' \donttest{
-#' getRoadWorks(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getRoadWorks(mykey)
 #' }
 #' @import httr
 #' @export getRoadWorks
@@ -55,6 +55,10 @@ getRoadWorks <- function(api_key) {
       }
       output <- rbind(output, output0)
       num <- num + 1
+    }
+
+    for (col in colnames(output)) {
+      output[[col]] <- as.character(output[[col]])
     }
 
     message("API call successful. Number of road works found: ", nrow(output))

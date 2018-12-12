@@ -6,7 +6,7 @@
 #' @return A dataframe containing the latitude and longitude information for all the taxis available for hire.
 #' @examples
 #' \donttest{
-#' getTaxiAvail(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getTaxiAvail(mykey)
 #' }
 #' @import httr
 #' @export getTaxiAvail
@@ -52,8 +52,14 @@ getTaxiAvail <- function(api_key) {
     output <- rbind(output, output0)
     num <- num + 1
   }
-  output$Longitude <- as.numeric(as.character(output$Longitude))
-  output$Latitude <- as.numeric(as.character(output$Latitude))
+
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
+  output$Longitude <- as.numeric(output$Longitude)
+  output$Latitude <- as.numeric(output$Latitude)
+
   message('API call complete. Number of active taxis: ', nrow(output))
   return(output)
 }

@@ -7,7 +7,7 @@
 #' @return A dataframe containing all the outputs from the Bus Timings API, including the service number, estimated arrival time, load, and type for the next three buses.
 #' @examples
 #' \donttest{
-#' getBusTimings(c('11111', '22222', '33333'), Sys.getenv('LTA_DATAMALL_KEY'))
+#' getBusTimings(c('11111', '22222', '33333'), mykey)
 #' }
 #' @import httr
 #' @export getBusTimings
@@ -71,6 +71,11 @@ getBusTimings <- function(codes = c('07351', '09047'), api_key) {
       output <- rbind(output, output0)
     } else {next}
   }
+
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
   message('API call complete. Number of bus timings returned: ', nrow(output))
   return(output)
 }

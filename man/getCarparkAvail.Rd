@@ -17,6 +17,6 @@ Provides key details and available lots for HDB, LTA, and URA carparks.
 }
 \examples{
 \donttest{
-getCarparkAvail(Sys.getenv('LTA_DATAMALL_KEY'))
+getCarparkAvail(mykey)
 }
 }

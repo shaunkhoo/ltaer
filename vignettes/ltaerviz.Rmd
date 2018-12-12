@@ -1,6 +1,5 @@
 ---
 title: "ltaer: Visualisations"
-author: "Shaun Khoo"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
@@ -117,7 +116,7 @@ As with `leaflet`, there are many excellent tutorials and resources online that 
 
 Spatial visualisation is interesting because it links location information (coordinates) to some interesting data about that location (income, traffic, age, etc), and through that we can gain some insights about our neighbourhood and our city. While using the data from the LTA APIs directly can already be pretty good, why not go a step further to link a few datasets together?
 
-In the example below, I join the bus stop availability data for October 2018 (weekdays only) with bus stops data, and thus produce a dataset which contains location and volume data for each bus stop in Singapore. This is also available in this package as `bus_ridership_cleaned`. Then, we can visualise this on a static map to see how which bus stops have the highest number of people tapping in. 
+In the example below, I join the bus stop passenger volume data for October 2018 (weekdays only) with bus stops data, and thus produce a dataset which contains location and volume data for each bus stop in Singapore. This is also available in this package as `bus_ridership_cleaned`. Then, we can visualise this on a static map to see how which bus stops have the highest number of people tapping in. 
 
 ``` {r message = FALSE, warning = FALSE}
 ggmap(sg_map, darken=c('0.70', '#030d2f')) + 

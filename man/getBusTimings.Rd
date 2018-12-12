@@ -19,6 +19,6 @@ Returns real-time estimated bus arrival timings for the specified bus stops in S
 }
 \examples{
 \donttest{
-getBusTimings(c('11111', '22222', '33333'), Sys.getenv('LTA_DATAMALL_KEY'))
+getBusTimings(c('11111', '22222', '33333'), mykey)
 }
 }

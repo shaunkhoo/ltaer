@@ -17,6 +17,6 @@ Provides the ERP rates for all vehicle types across all timings and all zones.
 }
 \examples{
 \donttest{
-getERPRates(Sys.getenv('LTA_DATAMALL_KEY'))
+getERPRates(mykey)
 }
 }

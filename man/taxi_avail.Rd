@@ -6,7 +6,7 @@
 \title{Taxi Availability}
 \format{A data frame with 4823 rows and 2 variables}
 \source{
-Called from the Bus Timings API on 11 December 2018 at 11.10pm
+Called from the Taxi Availability API on 11 December 2018 at 11.10pm
 }
 \usage{
 taxi_avail

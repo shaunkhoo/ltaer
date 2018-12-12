@@ -6,7 +6,7 @@
 \title{Carpark Availability}
 \format{A data frame with 2020 rows and 9 variables}
 \source{
-Called from the Bus Timings API on 12 December 2018 at 9.10am
+Called from the Carpark Availability API on 12 December 2018 at 9.10am
 }
 \usage{
 carpark_avail

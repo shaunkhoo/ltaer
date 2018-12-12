@@ -6,7 +6,7 @@
 #' @return If there is a train service disruption, it will return a dataframe containing the alerts and their respective details.
 #' @examples
 #' \donttest{
-#' getTrainAlerts(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getTrainAlerts(mykey)
 #' }
 #' @import httr
 #' @export getTrainAlerts
@@ -34,5 +34,10 @@ getTrainAlerts <- function(api_key) {
     }
     names(output) <- names(unlist(response_list[[1]]))
   }
+
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
   return(output)
 }

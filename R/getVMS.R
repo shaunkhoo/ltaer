@@ -6,7 +6,7 @@
 #' @return A dataframe containing each traffic advisory message and its coordinates
 #' @examples
 #' \donttest{
-#' getVMS(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getVMS(mykey)
 #' }
 #' @import httr
 #' @export getVMS
@@ -52,9 +52,14 @@ getVMS <- function(api_key) {
     output <- rbind(output, output0)
     num <- num + 1
   }
-  output$Latitude <- as.numeric(as.character(output$Latitude))
-  output$Longitude <- as.numeric(as.character(output$Longitude))
-  output$Message <- as.character(output$Message)
+
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
+  output$Latitude <- as.numeric(output$Latitude)
+  output$Longitude <- as.numeric(output$Longitude)
+
   message("API call successful. Number of VMS/EMAS messages found: ", nrow(output))
   return(output)
 }

@@ -6,7 +6,7 @@
 #' @return A dataframe containing each stretch of road, speed bands, and location data
 #' @examples
 #' \donttest{
-#' getTrafficSpeedBands(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getTrafficSpeedBands(mykey)
 #' }
 #' @import httr
 #' @export getTrafficSpeedBands
@@ -52,6 +52,11 @@ getTrafficSpeedBands <- function(api_key) {
     output <- rbind(output, output0)
     num <- num + 1
   }
+
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
   message("API call complete. Number of traffic speed bands found: ", nrow(output))
   return(output)
 }

@@ -17,6 +17,6 @@ Returns information on all bus stops in Singapore that are currently in operatio
 }
 \examples{
 \donttest{
-getBusStops(Sys.getenv('LTA_DATAMALL_KEY'))
+getBusStops(mykey)
 }
 }

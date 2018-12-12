@@ -19,6 +19,6 @@ Returns a link from LTA that enables the user to download a CSV file containing 
 }
 \examples{
 \donttest{
-getTrainPassengerVol_od(Sys.Date()-60, Sys.getenv('LTA_DATAMALL_KEY'))
+getTrainPassengerVol_od(Sys.Date()-60, mykey)
 }
 }

@@ -6,7 +6,7 @@
 #' @return A dataframe containing all the outputs from the Bus Routes API, such as the operator, stop sequence, bus stop code, and distance travelled.
 #' @examples
 #' \donttest{
-#' getBusRoutes(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getBusRoutes(mykey)
 #' }
 #' @import httr
 #' @import dplyr
@@ -51,6 +51,11 @@ getBusRoutes <- function(api_key) {
     output <- rbind(output, output0)
     num <- num + 1
   }
+
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
   message('API call complete. Number of bus routes returned: ', output %>% dplyr::distinct(output$ServiceNo) %>% nrow())
   return(output)
 }

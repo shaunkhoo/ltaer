@@ -7,7 +7,7 @@
 #' @return A link from which the user can download the CSV file.
 #' @examples
 #' \donttest{
-#' getBusPassengerVol_od(Sys.Date()-60, Sys.getenv('LTA_DATAMALL_KEY'))
+#' getBusPassengerVol_od(Sys.Date()-60, mykey)
 #' }
 #' @import httr
 #' @export getBusPassengerVol_od

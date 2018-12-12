@@ -17,6 +17,6 @@ Returns alerts of traffic lights that are either currently faulty or are undergo
 }
 \examples{
 \donttest{
-getFaultyTrafficLights(Sys.getenv('LTA_DATAMALL_KEY'))
+getFaultyTrafficLights(mykey)
 }
 }

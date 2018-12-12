@@ -6,7 +6,7 @@
 #' @return A dataframe containing each carpark's information and number of available lots
 #' @examples
 #' \donttest{
-#' getCarparkAvail(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getCarparkAvail(mykey)
 #' }
 #' @import httr
 #' @import dplyr
@@ -56,10 +56,12 @@ getCarparkAvail <- function(api_key) {
   output_final <- output %>%
     dplyr::mutate(lat = as.numeric(stringr::str_split(output$Location, "\\s", simplify=TRUE)[,1])) %>%
     dplyr::mutate(lng = as.numeric(stringr::str_split(output$Location, "\\s", simplify=TRUE)[,2]))
-  output_final$Development  <- as.character(output_final$Development)
-  output_final$AvailableLots <- as.numeric(as.character(output_final$AvailableLots))
-  output_final$Agency <- as.character(output_final$Agency)
-  output_final$LotType <- as.character(output_final$LotType)
+
+  for (col in colnames(output_final)) {
+    output_final[[col]] <- as.character(output_final[[col]])
+  }
+
+  output_final$AvailableLots <- as.numeric(output_final$AvailableLots)
 
   message('API call complete. Number of carparks returned: ', nrow(output_final))
   return(output_final)

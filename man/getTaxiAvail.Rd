@@ -17,6 +17,6 @@ Returns the coordinates for all taxis that are currently available for hire. Doe
 }
 \examples{
 \donttest{
-getTaxiAvail(Sys.getenv('LTA_DATAMALL_KEY'))
+getTaxiAvail(mykey)
 }
 }

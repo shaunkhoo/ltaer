@@ -6,7 +6,7 @@
 #' @return A dataframe containing each carpark's information and number of available lots
 #' @examples
 #' \donttest{
-#' getCarparkAvail(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getCarparkAvail(mykey)
 #' }
 #' @import httr
 #' @export getEstTravelTime
@@ -30,6 +30,11 @@ getEstTravelTime <- function(api_key) {
     output <- rbind(output, t(unlist(interim)))
   }
   names(output) <- names(unlist(carpark_list[[1]]))
+
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
   message("API call successful. Number of estimated travel times found: ", nrow(output))
   return(output)
 }

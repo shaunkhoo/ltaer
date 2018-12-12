@@ -6,7 +6,7 @@
 #' @return A dataframe containing the details for each planned road opening, such as the start date, end date, and new road name
 #' @examples
 #' \donttest{
-#' getRoadOpenings(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getRoadOpenings(mykey)
 #' }
 #' @import httr
 #' @export getRoadOpenings
@@ -53,6 +53,10 @@ getRoadOpenings <- function(api_key) {
       }
       output <- rbind(output, output0)
       num <- num + 1
+    }
+
+    for (col in colnames(output)) {
+      output[[col]] <- as.character(output[[col]])
     }
 
     message("API call successful. Number of scheduled road openings found: ", nrow(output))

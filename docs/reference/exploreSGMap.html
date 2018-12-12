@@ -39,7 +39,7 @@
 
 <meta property="og:title" content="Explore data on an interactive map of Singapore — exploreSGMap" />
 
-<meta property="og:description" content="A simple Leaflet wrapper which enables users to plot the data retrieved from the LTA APIs on an interactive map of Singapore. Some simple options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please rename the latitude and longitude columns to 'Latitude' and 'Longitude' respectively." />
+<meta property="og:description" content="A simple Leaflet wrapper which enables users to plot the data retrieved from the LTA APIs on an interactive map of Singapore. Some basic options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please obtain data for the coordinates and rename the respective columns to 'Latitude' and 'Longitude'." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -105,7 +105,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/shaunkhoo/ltaer">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -119,13 +124,13 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Explore data on an interactive map of Singapore</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/shaunkhoo/ltaer/blob/master/R/exploreSGMap.R'><code>R/exploreSGMap.R</code></a></small>
     <div class="hidden name"><code>exploreSGMap.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A simple Leaflet wrapper which enables users to plot the data retrieved from the LTA APIs on an interactive map of Singapore. Some simple options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please rename the latitude and longitude columns to 'Latitude' and 'Longitude' respectively.</p>
+    <p>A simple Leaflet wrapper which enables users to plot the data retrieved from the LTA APIs on an interactive map of Singapore. Some basic options are provided for ease of use. Note that this function only works automatically with outputs from getTaxiAvail, getCarparkAvail, getTrafficIncidents, getVMS, and getTrafficImages from this package. For all others, please obtain data for the coordinates and rename the respective columns to 'Latitude' and 'Longitude'.</p>
     
     </div>
 
@@ -141,7 +146,7 @@
     </tr>
     <tr>
       <th>popup</th>
-      <td><p>Name of the variable in the dataframe to be displayed when a marker is clicked on - default is NA</p></td>
+      <td><p>Variable to be displayed when a marker is clicked on - default is NA, needs to be a string of the variable name</p></td>
     </tr>
     <tr>
       <th>cluster</th>
@@ -163,12 +168,12 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An interactive Singapore map with the coordinates plotted</p>
+    <p>An interactive map of Singapore with the coordinates plotted as circular markers on the map</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>mydata</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getTrafficImages.html'>getTrafficImages</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>'LTA_DATAMALL_KEY'</span>))
+<span class='no'>mydata</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='getTrafficImages.html'>getTrafficImages</a></span>(<span class='no'>mykey</span>)
 <span class='fu'>exploreSGMap</span>(<span class='no'>mydata</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='st'>'black'</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>)
 <span class='co'># }</span></pre>
   </div>

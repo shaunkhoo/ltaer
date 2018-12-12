@@ -6,7 +6,7 @@
 #' @return A dataframe containing each traffic incident, its type, coordinates, and description message
 #' @examples
 #' \donttest{
-#' getTrafficIncidents(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getTrafficIncidents(mykey)
 #' }
 #' @import httr
 #' @export getTrafficIncidents
@@ -52,10 +52,14 @@ getTrafficIncidents <- function(api_key) {
     output <- rbind(output, output0)
     num <- num + 1
   }
-  output$Type <- as.character(output$Type)
-  output$Message <- as.character(output$Message)
-  output$Latitude <- as.numeric(as.character(output$Latitude))
-  output$Longitude <- as.numeric(as.character(output$Longitude))
+
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
+  output$Latitude <- as.numeric(output$Latitude)
+  output$Longitude <- as.numeric(output$Longitude)
+
   message("API call successful. Number of traffic incidents found: ", nrow(output))
   return(output)
 }

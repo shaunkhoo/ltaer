@@ -17,6 +17,6 @@ Returns all planned road openings.
 }
 \examples{
 \donttest{
-getRoadOpenings(Sys.getenv('LTA_DATAMALL_KEY'))
+getRoadOpenings(mykey)
 }
 }

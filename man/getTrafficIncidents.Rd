@@ -17,6 +17,6 @@ Returns incidents currently happening on the roads, such as accidents, vehicle b
 }
 \examples{
 \donttest{
-getTrafficIncidents(Sys.getenv('LTA_DATAMALL_KEY'))
+getTrafficIncidents(mykey)
 }
 }

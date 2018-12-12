@@ -17,6 +17,6 @@ Returns alerts on train service unavailability during scheduled operating hours.
 }
 \examples{
 \donttest{
-getTrainAlerts(Sys.getenv('LTA_DATAMALL_KEY'))
+getTrainAlerts(mykey)
 }
 }

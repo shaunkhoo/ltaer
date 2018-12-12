@@ -17,6 +17,6 @@ Returns current traffic speeds on expressways and major roads, expressed in spee
 }
 \examples{
 \donttest{
-getTrafficSpeedBands(Sys.getenv('LTA_DATAMALL_KEY'))
+getTrafficSpeedBands(mykey)
 }
 }

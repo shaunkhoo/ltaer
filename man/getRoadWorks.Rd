@@ -17,6 +17,6 @@ Returns all road works currently being carried out or scheduled to be carried ou
 }
 \examples{
 \donttest{
-getRoadWorks(Sys.getenv('LTA_DATAMALL_KEY'))
+getRoadWorks(mykey)
 }
 }

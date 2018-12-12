@@ -68,7 +68,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/shaunkhoo/ltaer">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -81,11 +88,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>ltaer: Core Functions</h1>
-                        <h4 class="author">Shaun Khoo</h4>
             
-            <h4 class="date">2018-12-12</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/shaunkhoo/ltaer/blob/master/vignettes/corefunctions.Rmd"><code>vignettes/corefunctions.Rmd</code></a></small>
       <div class="hidden name"><code>corefunctions.Rmd</code></div>
 
     </div>
@@ -94,7 +99,7 @@
     
 <div id="working-with-lta-datamalls-apis" class="section level2">
 <h2 class="hasAnchor">
-<a href="#working-with-lta-datamalls-apis" class="anchor"></a>0. Working with LTA Datamall’s APIs</h2>
+<a href="#working-with-lta-datamalls-apis" class="anchor"></a>1. Working with LTA Datamall’s APIs</h2>
 <div id="api-key" class="section level4">
 <h4 class="hasAnchor">
 <a href="#api-key" class="anchor"></a>API Key</h4>
@@ -118,7 +123,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">'shaunkhoo/lta
 </div>
 <div id="bus-arrival-timings" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bus-arrival-timings" class="anchor"></a>1. Bus Arrival Timings</h2>
+<a href="#bus-arrival-timings" class="anchor"></a>2. Bus Arrival Timings</h2>
 <p>Probably the most well-utilised API of the lot, the Bus Arrival API enables users to retrieve bus arrival timings for any bus stop in Singapore. There are some specific things to mention here about the API (you can also find this in the documentation):</p>
 <ul>
 <li>For each bus service serving that bus stop, the bus arrival details (timing, coordinates, type, load etc) are reported for the next three buses. If there are only one or two ‘next buses’ left (usually around 11pm-1am), then the bus arrival details for those ‘next bus’ slots will be NA.</li>
@@ -137,70 +142,1327 @@ devtools::<span class="kw">install_github</span>(<span class="st">'shaunkhoo/lta
 <p>I provide an example below of the output you can expect from <code>getBusTimings</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ltaer)
 
-<span class="co"># The following code is commented out as it may not work all the time. The output has been saved in this package as 'bus_arrivals' for your use.</span>
-<span class="co"># bus_arrivals &lt;- getBusTimings(c('07531', '09047', '11239', '14151', '66451', '44289', '50021', '54269', '03019', '09022', '41029'), api_key = Sys.getenv('LTA_DATAMALL_KEY'))</span>
+bus_arrivals &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getBusTimings.html">getBusTimings</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'07531'</span>, <span class="st">'09047'</span>, <span class="st">'11239'</span>), <span class="dt">api_key =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
 
 <span class="co"># Note that I've transposed the dataframe (the columns are the rows and vice versa) for clarity of presentation.</span>
-<span class="co">#knitr::kable(t(bus_arrivals[1:3,]))</span></code></pre></div>
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(bus_arrivals[<span class="dv">1</span>:<span class="dv">3</span>,]))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th></th>
+<th align="left">NA</th>
+<th align="left">NA.1</th>
+<th align="left">NA.2</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>X1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X2</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X3</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X4</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X5</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X6</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X7</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X8</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X9</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X10</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X11</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X12</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X13</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X14</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X15</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X16</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X17</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X18</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X19</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X20</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X21</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X22</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X23</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X24</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X25</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X26</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X27</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X28</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td>X29</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>X30</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="bus-services" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bus-services" class="anchor"></a>2. Bus Services</h2>
+<a href="#bus-services" class="anchor"></a>3. Bus Services</h2>
 <p>This API returns service information for all buses currently in operation in Singapore. The data available here is similar to those you find on the information boards at each bus stop.</p>
 <p><code>getBusServices</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bus_services &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getBusServices.html">getBusServices</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+
 <span class="co"># Note that I've transposed the dataframe (the columns are the rows and vice versa) for clarity of presentation.</span>
-<span class="co">#knitr::kable(t(bus_services[1:9,]))</span></code></pre></div>
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(bus_services[<span class="dv">1</span>:<span class="dv">9</span>,]))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th></th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+<th align="left">5</th>
+<th align="left">6</th>
+<th align="left">7</th>
+<th align="left">8</th>
+<th align="left">9</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>ServiceNo</td>
+<td align="left">118</td>
+<td align="left">118</td>
+<td align="left">118A</td>
+<td align="left">118B</td>
+<td align="left">119</td>
+<td align="left">12</td>
+<td align="left">12</td>
+<td align="left">12e</td>
+<td align="left">12e</td>
+</tr>
+<tr class="even">
+<td>Operator</td>
+<td align="left">GAS</td>
+<td align="left">GAS</td>
+<td align="left">GAS</td>
+<td align="left">GAS</td>
+<td align="left">GAS</td>
+<td align="left">GAS</td>
+<td align="left">GAS</td>
+<td align="left">GAS</td>
+<td align="left">GAS</td>
+</tr>
+<tr class="odd">
+<td>Direction</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td>Category</td>
+<td align="left">TRUNK</td>
+<td align="left">TRUNK</td>
+<td align="left">TRUNK</td>
+<td align="left">TRUNK</td>
+<td align="left">TRUNK</td>
+<td align="left">TRUNK</td>
+<td align="left">TRUNK</td>
+<td align="left">EXPRESS</td>
+<td align="left">EXPRESS</td>
+</tr>
+<tr class="odd">
+<td>OriginCode</td>
+<td align="left">65009</td>
+<td align="left">97009</td>
+<td align="left">65199</td>
+<td align="left">96111</td>
+<td align="left">65009</td>
+<td align="left">77009</td>
+<td align="left">10499</td>
+<td align="left">77009</td>
+<td align="left">10499</td>
+</tr>
+<tr class="even">
+<td>DestinationCode</td>
+<td align="left">97009</td>
+<td align="left">65009</td>
+<td align="left">96119</td>
+<td align="left">65191</td>
+<td align="left">65009</td>
+<td align="left">10499</td>
+<td align="left">77009</td>
+<td align="left">10499</td>
+<td align="left">77009</td>
+</tr>
+<tr class="odd">
+<td>AM_Peak_Freq</td>
+<td align="left">06-08</td>
+<td align="left">10</td>
+<td align="left">14-16</td>
+<td align="left">-</td>
+<td align="left">16-08</td>
+<td align="left">9</td>
+<td align="left">10</td>
+<td align="left">20-30</td>
+<td align="left">20-30</td>
+</tr>
+<tr class="even">
+<td>AM_Offpeak_Freq</td>
+<td align="left">08-15</td>
+<td align="left">10-12</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">18-12</td>
+<td align="left">09-14</td>
+<td align="left">08-15</td>
+<td align="left">30</td>
+<td align="left">20-30</td>
+</tr>
+<tr class="odd">
+<td>PM_Peak_Freq</td>
+<td align="left">10-12</td>
+<td align="left">05-11</td>
+<td align="left">-</td>
+<td align="left">30</td>
+<td align="left">17-12</td>
+<td align="left">9-10</td>
+<td align="left">08-14</td>
+<td align="left">20-30</td>
+<td align="left">20-30</td>
+</tr>
+<tr class="even">
+<td>PM_Offpeak_Freq</td>
+<td align="left">11-15</td>
+<td align="left">10-15</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">15-17</td>
+<td align="left">11-13</td>
+<td align="left">10-14</td>
+<td align="left">20-30</td>
+<td align="left">20-30</td>
+</tr>
+<tr class="odd">
+<td>LoopDesc</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Hougang St 21</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="bus-routes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bus-routes" class="anchor"></a>3. Bus Routes</h2>
+<a href="#bus-routes" class="anchor"></a>4. Bus Routes</h2>
 <p>This API returns route information for all services currently in operation in Singapore. The data here is quite useful as they provide each bus stop code and stop sequence for each bus service, so you can plot out the full route for each bus service. While this is already quite useful, it would have been even better if route polylines were provided as well.</p>
 <p><code>getBusRoutes</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The following code is commented out as it takes a long time to retrieve all the routes. The output has been saved in this package as 'bus_routes' for your use.</span>
-<span class="co"># bus_routes &lt;- getBusRoutes(Sys.getenv('LTA_DATAMALL_KEY'))</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bus_routes &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getBusRoutes.html">getBusRoutes</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
 
 <span class="co"># Note that I've transposed the dataframe (the columns are the rows and vice versa) for clarity of presentation.</span>
-<span class="co">#knitr::kable(bus_routes[1:9,])</span></code></pre></div>
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(bus_routes[<span class="dv">1</span>:<span class="dv">9</span>,]))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th></th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+<th align="left">5</th>
+<th align="left">6</th>
+<th align="left">7</th>
+<th align="left">8</th>
+<th align="left">9</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>ServiceNo</td>
+<td align="left">10</td>
+<td align="left">10</td>
+<td align="left">10</td>
+<td align="left">10</td>
+<td align="left">10</td>
+<td align="left">10</td>
+<td align="left">10</td>
+<td align="left">10</td>
+<td align="left">10</td>
+</tr>
+<tr class="even">
+<td>Operator</td>
+<td align="left">SBST</td>
+<td align="left">SBST</td>
+<td align="left">SBST</td>
+<td align="left">SBST</td>
+<td align="left">SBST</td>
+<td align="left">SBST</td>
+<td align="left">SBST</td>
+<td align="left">SBST</td>
+<td align="left">SBST</td>
+</tr>
+<tr class="odd">
+<td>Direction</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td>StopSequence</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">7</td>
+<td align="left">8</td>
+<td align="left">9</td>
+</tr>
+<tr class="odd">
+<td>BusStopCode</td>
+<td align="left">75009</td>
+<td align="left">76059</td>
+<td align="left">76069</td>
+<td align="left">96289</td>
+<td align="left">96109</td>
+<td align="left">85079</td>
+<td align="left">85089</td>
+<td align="left">85069</td>
+<td align="left">85059</td>
+</tr>
+<tr class="even">
+<td>Distance</td>
+<td align="left">0</td>
+<td align="left">0.6</td>
+<td align="left">1.1</td>
+<td align="left">2.3</td>
+<td align="left">2.7</td>
+<td align="left">3.3</td>
+<td align="left">3.5</td>
+<td align="left">3.8</td>
+<td align="left">4.1</td>
+</tr>
+<tr class="odd">
+<td>WD_FirstBus</td>
+<td align="left">0500</td>
+<td align="left">0502</td>
+<td align="left">0504</td>
+<td align="left">0508</td>
+<td align="left">0509</td>
+<td align="left">0511</td>
+<td align="left">0512</td>
+<td align="left">0513</td>
+<td align="left">0514</td>
+</tr>
+<tr class="even">
+<td>WD_LastBus</td>
+<td align="left">2300</td>
+<td align="left">2302</td>
+<td align="left">2304</td>
+<td align="left">2308</td>
+<td align="left">2310</td>
+<td align="left">2312</td>
+<td align="left">2313</td>
+<td align="left">2314</td>
+<td align="left">2315</td>
+</tr>
+<tr class="odd">
+<td>SAT_FirstBus</td>
+<td align="left">0500</td>
+<td align="left">0502</td>
+<td align="left">0504</td>
+<td align="left">0508</td>
+<td align="left">0509</td>
+<td align="left">0511</td>
+<td align="left">0512</td>
+<td align="left">0513</td>
+<td align="left">0514</td>
+</tr>
+<tr class="even">
+<td>SAT_LastBus</td>
+<td align="left">2300</td>
+<td align="left">2302</td>
+<td align="left">2304</td>
+<td align="left">2309</td>
+<td align="left">2311</td>
+<td align="left">2313</td>
+<td align="left">2314</td>
+<td align="left">2315</td>
+<td align="left">2316</td>
+</tr>
+<tr class="odd">
+<td>SUN_FirstBus</td>
+<td align="left">0500</td>
+<td align="left">0502</td>
+<td align="left">0503</td>
+<td align="left">0507</td>
+<td align="left">0508</td>
+<td align="left">0510</td>
+<td align="left">0511</td>
+<td align="left">0512</td>
+<td align="left">0513</td>
+</tr>
+<tr class="even">
+<td>SUN_LastBus</td>
+<td align="left">2300</td>
+<td align="left">2302</td>
+<td align="left">2304</td>
+<td align="left">2308</td>
+<td align="left">2309</td>
+<td align="left">2311</td>
+<td align="left">2312</td>
+<td align="left">2313</td>
+<td align="left">2314</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="bus-stops" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bus-stops" class="anchor"></a>4. Bus Stops</h2>
+<a href="#bus-stops" class="anchor"></a>5. Bus Stops</h2>
 <p>This API returns information for all bus stops currently being serviced by buses in Singapore, such as bus stop codes, coordinates and road names.</p>
 <p><code>getBusStops</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#knitr::kable(head(bus_stops))</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bus_stops &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getBusStops.html">getBusStops</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(bus_stops[<span class="dv">1</span>:<span class="dv">10</span>,])</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">BusStopCode</th>
+<th align="left">RoadName</th>
+<th align="left">Description</th>
+<th align="right">Latitude</th>
+<th align="right">Longitude</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">00481</td>
+<td align="left">Woodlands Rd</td>
+<td align="left">BT PANJANG TEMP BUS PK</td>
+<td align="right">1.383764</td>
+<td align="right">103.7583</td>
+</tr>
+<tr class="even">
+<td align="left">01012</td>
+<td align="left">Victoria St</td>
+<td align="left">Hotel Grand Pacific</td>
+<td align="right">1.296848</td>
+<td align="right">103.8525</td>
+</tr>
+<tr class="odd">
+<td align="left">01013</td>
+<td align="left">Victoria St</td>
+<td align="left">St. Joseph’s Ch</td>
+<td align="right">1.297710</td>
+<td align="right">103.8532</td>
+</tr>
+<tr class="even">
+<td align="left">01019</td>
+<td align="left">Victoria St</td>
+<td align="left">Bras Basah Cplx</td>
+<td align="right">1.296990</td>
+<td align="right">103.8530</td>
+</tr>
+<tr class="odd">
+<td align="left">01029</td>
+<td align="left">Nth Bridge Rd</td>
+<td align="left">Cosmic Insurance Bldg</td>
+<td align="right">1.296673</td>
+<td align="right">103.8544</td>
+</tr>
+<tr class="even">
+<td align="left">01039</td>
+<td align="left">Nth Bridge Rd</td>
+<td align="left">Nth Bridge Commercial Cplx</td>
+<td align="right">1.298208</td>
+<td align="right">103.8555</td>
+</tr>
+<tr class="odd">
+<td align="left">01059</td>
+<td align="left">Victoria St</td>
+<td align="left">Bugis Stn Exit B</td>
+<td align="right">1.300757</td>
+<td align="right">103.8561</td>
+</tr>
+<tr class="even">
+<td align="left">01109</td>
+<td align="left">Queen St</td>
+<td align="left">Queen St Ter</td>
+<td align="right">1.303586</td>
+<td align="right">103.8565</td>
+</tr>
+<tr class="odd">
+<td align="left">01112</td>
+<td align="left">Victoria St</td>
+<td align="left">Opp Bugis Junction</td>
+<td align="right">1.300092</td>
+<td align="right">103.8552</td>
+</tr>
+<tr class="even">
+<td align="left">01113</td>
+<td align="left">Victoria St</td>
+<td align="left">Bugis Stn Exit A</td>
+<td align="right">1.301173</td>
+<td align="right">103.8561</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="passenger-volume-buses" class="section level2">
 <h2 class="hasAnchor">
-<a href="#passenger-volume-buses" class="anchor"></a>5. Passenger Volume (Buses)</h2>
-<p>There are two</p>
+<a href="#passenger-volume-buses" class="anchor"></a>6. Passenger Volume (Buses)</h2>
+<p>There are two APIs here that you can call - the first is for passenger volume for each bus stop, and the second is for passenger volume for each origin-destination bus stop pair. Here are the two wrapper functions for the respective APIs:</p>
+<ul>
+<li>
+<code><a href="../reference/getBusPassengerVol.html">getBusPassengerVol()</a></code>: Passenger volume for each bus stop</li>
+<li>
+<code><a href="../reference/getBusPassengerVol_od.html">getBusPassengerVol_od()</a></code>: Passenger volume for each origin-destination bus stop pair</li>
+</ul>
+<p>The wrappers for these two APIs require you to enter a date and your API key, and returns you the link which LTA provides to download the zipped CSV file of the data. Note that the date must be supplied in R’s Date format - you can see this from the first example below. If you do not supply any date into the function, it will revert to the default of 60 days prior to the current date, as indicated in the second example.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/getBusPassengerVol.html">getBusPassengerVol</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.Date">as.Date</a></span>(<span class="st">'01-10-2018'</span>, <span class="dt">format =</span> <span class="st">'%d-%m-%Y'</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+## [1] "https://ltafarecard.s3.amazonaws.com/201810/transport_node_bus_201810.zip?x-amz-security-token=FQoGZXIvYXdzEJ3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDMYXvpYUHQsikzWmMSKmA1J0rZCmPSbkMvdAsBeVYSGBXdRS2U0k0QlEqRhw9NE7pPpik3eevnX8%2F%2B%2FBDP6aQILWT9%2FuUbX2gb%2BJkaSgAoleoAEN17J4GOXZPiXCK3dpol1bNuSmG27M7oCWRUWGRTbsGssMgZo3SYShQHnJ4HGpyCBc4bBH4%2FmYPS1rilUdiX0Ij6QPzyerMTXcetgcgN0KHjhST3%2Bst1ICAZuFCwooqzdbMNWjaNHpWAxwiXRbJCPhSpjbL5d68HlfO4KpDjVusXYgOO%2Br9d%2F%2BiX%2B%2FKcHGGUkuoZA6xzNhCxulMOgHCpBA7PM6eqgdT2O%2Fro9ygXIyMRNvbVO9s7CWLZoTQgQZURVlRXnms%2FjQtkiMAocZQQRpSKb6dBns2C9v0sXPWA%2FRIJZlmD2xUINrbjDXO6KjppKkOozAKPu%2BhydxnbkzOVpNsYsV4l7EQzqAbArbGStYNVcqXo36sYY0CRHgVLuiK510vwaxYX%2B8UvhQSdNtxJz%2Bi794m%2FKXMHhn8mbuM5FyuPClbU95fT8aezyPL167KQvmkNq6MYt%2Fxc6EJzTK4WDmNVrKKPe7xeAF&amp;AWSAccessKeyId=ASIAU6UAMAS4NHRIBX4Q&amp;Expires=1544644994&amp;Signature=u1XkxwztbIFsQhfjmksJPpC4gzI%3D"</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/getBusPassengerVol_od.html">getBusPassengerVol_od</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.Date</a></span>()-<span class="dv">60</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+## [1] "https://ltafarecard.s3.amazonaws.com/201810/origin_destination_bus_201810.zip?x-amz-security-token=FQoGZXIvYXdzEJ3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDMYXvpYUHQsikzWmMSKmA1J0rZCmPSbkMvdAsBeVYSGBXdRS2U0k0QlEqRhw9NE7pPpik3eevnX8%2F%2B%2FBDP6aQILWT9%2FuUbX2gb%2BJkaSgAoleoAEN17J4GOXZPiXCK3dpol1bNuSmG27M7oCWRUWGRTbsGssMgZo3SYShQHnJ4HGpyCBc4bBH4%2FmYPS1rilUdiX0Ij6QPzyerMTXcetgcgN0KHjhST3%2Bst1ICAZuFCwooqzdbMNWjaNHpWAxwiXRbJCPhSpjbL5d68HlfO4KpDjVusXYgOO%2Br9d%2F%2BiX%2B%2FKcHGGUkuoZA6xzNhCxulMOgHCpBA7PM6eqgdT2O%2Fro9ygXIyMRNvbVO9s7CWLZoTQgQZURVlRXnms%2FjQtkiMAocZQQRpSKb6dBns2C9v0sXPWA%2FRIJZlmD2xUINrbjDXO6KjppKkOozAKPu%2BhydxnbkzOVpNsYsV4l7EQzqAbArbGStYNVcqXo36sYY0CRHgVLuiK510vwaxYX%2B8UvhQSdNtxJz%2Bi794m%2FKXMHhn8mbuM5FyuPClbU95fT8aezyPL167KQvmkNq6MYt%2Fxc6EJzTK4WDmNVrKKPe7xeAF&amp;AWSAccessKeyId=ASIAU6UAMAS4NHRIBX4Q&amp;Expires=1544644995&amp;Signature=dc1QbhJIZpUi3wTP5ixASGtAM%2BQ%3D"</code></pre></div>
 </div>
 <div id="passenger-volume-trains" class="section level2">
 <h2 class="hasAnchor">
-<a href="#passenger-volume-trains" class="anchor"></a>6. Passenger Volume (Trains)</h2>
+<a href="#passenger-volume-trains" class="anchor"></a>7. Passenger Volume (Trains)</h2>
+<p>Similar to the APIs for buses, these APIs provide the same data but for trains instead. Here are the two wrapper functions for the respective APIs:</p>
+<ul>
+<li>
+<code><a href="../reference/getTrainPassengerVol.html">getTrainPassengerVol()</a></code>: Passenger volume for each MRT station</li>
+<li>
+<code><a href="../reference/getTrainPassengerVol_od.html">getTrainPassengerVol_od()</a></code>: Passenger volume for each origin-destination MRT station pair</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/getTrainPassengerVol.html">getTrainPassengerVol</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.Date">as.Date</a></span>(<span class="st">'01-10-2018'</span>, <span class="dt">format =</span> <span class="st">'%d-%m-%Y'</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+## [1] "https://ltafarecard.s3.amazonaws.com/201810/transport_node_train_201810.zip?x-amz-security-token=FQoGZXIvYXdzEJ3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDEsCAyrCsOFSSjl8aiKmA2POVcKmnokQApeyoU%2B29f1gbwUxtdLSWs3LBwcMCOrA%2FIxXI3pS89vXBdmLIejgTHEguqz66v5w0R87ghAep42cPUfiNpgiT6REBIcwzwbcDC7mVoA7a1XB%2FuVRi5nzxXtJUXVaXhqBPqh0meP2mKOT8oOhR8%2FCtBF3Hvt1WGCrTIXDPUfMor9Z%2F8yzv2vtl2wRSOdwTpCcY7Dj6NuMoORGrFYkzKJhkED4AVwq25Te7CDxrEuQTpA0%2Fv03S5aAXZjNsuTAQUlH7Y5Q1%2FvOaq9GXpK8Sx%2Bmtig8abnsDJmPefSahptTxRtK%2F7iKzIOj%2FrZwd010hUXDcvXPSXpoSqLs3p7UkarDgosyU3JfTXIKJV9IME3daNx2EfA4xnerY1TzPc7g9D7KxcsoP58s754Os383SEF55unZlBf9gvTUegXpbV8O42iL%2F9OdqQvfgzVdR2BufZhppKx7MQ4LyJlX7Q7s%2Bu6iADelmnKpngYUlceWw6yZpUjRzy1GvN0WFk4N5KgOgF8DN5aPj9Z%2FeI%2BsjAJyQfkz3PQBufxyrSRpbtlUhs3UKPe7xeAF&amp;AWSAccessKeyId=ASIAU6UAMAS4EUIZPZKN&amp;Expires=1544644995&amp;Signature=Fm7l%2FWyYeRN1TvOfKp4ZRLZNfb0%3D"</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/getTrainPassengerVol_od.html">getTrainPassengerVol_od</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.Date</a></span>()-<span class="dv">60</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+## [1] "https://ltafarecard.s3.amazonaws.com/201810/origin_destination_train_201810.zip?x-amz-security-token=FQoGZXIvYXdzEJ3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDBBcGjxgcXhG6GpvWCKmA3%2B%2B%2BrhDTroQFvSCoX3T33exIIYlLCPk%2BEhj4NVF2iAxHg6KjV26KYohrdMmgB4A6DVet02rKDUumV9okMNuUaNUG73s852imhGAMQGVMrMTryulo6cbiXr%2BFhtZV%2FzBLWeRmD9wHJUh3RzcPHqTi3wSTbRmtPBWDK%2Fn1Hl4w3Q1CfPuTpZjDI6%2F3bc0m51sFak1xAy8vG72EzPNMzNaBbQzoDg8LF5A1GBf54ho3OQBm0sSf7S4km%2FvCtIlP2nli76y7HmwNhTrC3Lrd4yexkHzRYz0m6SOqg5Acwr9odhOP%2BrgohHX4SloF8RO4SzMaBjm%2BF1KynXKKsl9aLAYQvZXCqqG9B2fJF4xnc2AJXF09FkeRrxwCq8FELfjyLgBU%2FWQLM0V2rUQ3FGVDj7%2FrVnLtPa6nVBoWgI2ZSu3hrPFoX4T5ztVaMs8SPBMgoY8IDl4GZyxEvnVOoDMBt8UzbEpsG%2FJ%2FUvEjYtVdFBH1rac5oS%2BZw6JsMBZr%2BHrCfkjINzAgo5zkHQHf5azGT%2FVZK5wewhlWTG3Y50Xh5aoujihfi5PcCSMKIe6xeAF&amp;AWSAccessKeyId=ASIAU6UAMAS4PL6HNL7U&amp;Expires=1544644996&amp;Signature=nSkNK08tTNMpZj9qS0L7npgcr4Y%3D"</code></pre></div>
 </div>
 <div id="taxi-availability" class="section level2">
 <h2 class="hasAnchor">
-<a href="#taxi-availability" class="anchor"></a>7. Taxi Availability</h2>
+<a href="#taxi-availability" class="anchor"></a>8. Taxi Availability</h2>
 <p>This API returns the coordinates for all available taxis that are available for hire in Singapore (excludes hired and ‘busy’ taxis).</p>
 <p><code>getTaxiAvail</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#knitr::kable(head(taxi_avail))</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">taxi_avail &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getTaxiAvail.html">getTaxiAvail</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(taxi_avail[<span class="dv">1</span>:<span class="dv">10</span>,])</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">Longitude</th>
+<th align="right">Latitude</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">103.9864</td>
+<td align="right">1.35401</td>
+</tr>
+<tr class="even">
+<td align="right">103.8613</td>
+<td align="right">1.28496</td>
+</tr>
+<tr class="odd">
+<td align="right">103.8873</td>
+<td align="right">1.32404</td>
+</tr>
+<tr class="even">
+<td align="right">103.9442</td>
+<td align="right">1.32122</td>
+</tr>
+<tr class="odd">
+<td align="right">103.7685</td>
+<td align="right">1.31744</td>
+</tr>
+<tr class="even">
+<td align="right">103.7480</td>
+<td align="right">1.39704</td>
+</tr>
+<tr class="odd">
+<td align="right">103.9018</td>
+<td align="right">1.38731</td>
+</tr>
+<tr class="even">
+<td align="right">103.8718</td>
+<td align="right">1.34761</td>
+</tr>
+<tr class="odd">
+<td align="right">103.7775</td>
+<td align="right">1.29039</td>
+</tr>
+<tr class="even">
+<td align="right">103.8381</td>
+<td align="right">1.30196</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="train-service-alerts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#train-service-alerts" class="anchor"></a>9. Train Service Alerts</h2>
+<p>This API returns information about train service unavailability during scheduled operating hours - which refers to unexpected train service delays or breakdowns. Unfortunately (or otherwise…) I did not get a chance to test this fully since there were no train alerts whenever I called the API, but it should return all the information in a dataframe format.</p>
+<p><code>getTrainAlerts</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/getTrainAlerts.html">getTrainAlerts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+## Successful API call for train service alerts data. Processing...
+## Normal train service reported. No service alerts available.</code></pre></div>
 </div>
 <div id="carpark-availability" class="section level2">
 <h2 class="hasAnchor">
-<a href="#carpark-availability" class="anchor"></a>8. Carpark Availability</h2>
-<p>This API returns the coordinates for all available taxis that are available for hire in Singapore (excludes hired and ‘busy’ taxis).</p>
-<p><code>getTaxiAvail</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#knitr::kable(head(taxi_avail))</span></code></pre></div>
+<a href="#carpark-availability" class="anchor"></a>10. Carpark Availability</h2>
+<p>This API returns the number of available parking lots, as obtained from HDB, LTA, and URA carpark data. This covers almost all carparks in housing estates and quite a few carparks in the CBD area. Calling this API returns the coordinates and description for each carpark as well as the number of available parking lots.</p>
+<p><code>getCarparkAvail</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">carpark_avail &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getCarparkAvail.html">getCarparkAvail</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(carpark_avail))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">CarParkID</th>
+<th align="left">Area</th>
+<th align="left">Development</th>
+<th align="left">Location</th>
+<th align="right">AvailableLots</th>
+<th align="left">LotType</th>
+<th align="left">Agency</th>
+<th align="right">lat</th>
+<th align="right">lng</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">Marina</td>
+<td align="left">Suntec City</td>
+<td align="left">1.29375 103.85718</td>
+<td align="right">2806</td>
+<td align="left">C</td>
+<td align="left">LTA</td>
+<td align="right">1.29375</td>
+<td align="right">103.8572</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">Marina</td>
+<td align="left">Marina Square</td>
+<td align="left">1.29115 103.85728</td>
+<td align="right">1855</td>
+<td align="left">C</td>
+<td align="left">LTA</td>
+<td align="right">1.29115</td>
+<td align="right">103.8573</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">Marina</td>
+<td align="left">Raffles City</td>
+<td align="left">1.29382 103.85319</td>
+<td align="right">913</td>
+<td align="left">C</td>
+<td align="left">LTA</td>
+<td align="right">1.29382</td>
+<td align="right">103.8532</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">Marina</td>
+<td align="left">The Esplanade</td>
+<td align="left">1.29011 103.85561</td>
+<td align="right">792</td>
+<td align="left">C</td>
+<td align="left">LTA</td>
+<td align="right">1.29011</td>
+<td align="right">103.8556</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">Marina</td>
+<td align="left">Millenia Singapore</td>
+<td align="left">1.29251 103.86009</td>
+<td align="right">1272</td>
+<td align="left">C</td>
+<td align="left">LTA</td>
+<td align="right">1.29251</td>
+<td align="right">103.8601</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">Marina</td>
+<td align="left">Singapore Flyer</td>
+<td align="left">1.28944 103.86311</td>
+<td align="right">138</td>
+<td align="left">C</td>
+<td align="left">LTA</td>
+<td align="right">1.28944</td>
+<td align="right">103.8631</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="erp-rates" class="section level2">
 <h2 class="hasAnchor">
-<a href="#erp-rates" class="anchor"></a>9. ERP Rates</h2>
-<p>This API</p>
+<a href="#erp-rates" class="anchor"></a>11. ERP Rates</h2>
+<p>This API returns information about the Electronic Road Pricing (ERP) rates for all vehicle types across all timings and for all zones. Calling this API returns information about the ERP rate by vehicle type, timing, and zone ID.</p>
+<p><code>getERPRates</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">erp_rates &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getERPRates.html">getERPRates</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(erp_rates))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">VehicleType</th>
+<th align="left">DayType</th>
+<th align="left">StartTime</th>
+<th align="left">EndTime</th>
+<th align="left">ZoneID</th>
+<th align="left">ChargeAmount</th>
+<th align="left">EffectiveDate</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Heavy Goods Vehicles/Small Buses</td>
+<td align="left">Weekdays</td>
+<td align="left">09:00</td>
+<td align="left">22:30</td>
+<td align="left">AY1</td>
+<td align="left">0</td>
+<td align="left">2018-11-17</td>
+</tr>
+<tr class="even">
+<td align="left">Heavy Goods Vehicles/Small Buses</td>
+<td align="left">Weekdays</td>
+<td align="left">08:05</td>
+<td align="left">08:55</td>
+<td align="left">AY1</td>
+<td align="left">1.5</td>
+<td align="left">2018-11-17</td>
+</tr>
+<tr class="odd">
+<td align="left">Passenger Cars/Light Goods Vehicles/Taxis</td>
+<td align="left">Weekdays</td>
+<td align="left">08:05</td>
+<td align="left">08:55</td>
+<td align="left">AY1</td>
+<td align="left">1</td>
+<td align="left">2018-11-17</td>
+</tr>
+<tr class="even">
+<td align="left">Passenger Cars/Light Goods Vehicles/Taxis</td>
+<td align="left">Weekdays</td>
+<td align="left">09:00</td>
+<td align="left">22:30</td>
+<td align="left">AY1</td>
+<td align="left">0</td>
+<td align="left">2018-11-17</td>
+</tr>
+<tr class="odd">
+<td align="left">Very Heavy Goods Vehicles/Big Buses</td>
+<td align="left">Weekdays</td>
+<td align="left">08:05</td>
+<td align="left">08:55</td>
+<td align="left">AY1</td>
+<td align="left">2</td>
+<td align="left">2018-11-17</td>
+</tr>
+<tr class="even">
+<td align="left">Very Heavy Goods Vehicles/Big Buses</td>
+<td align="left">Weekdays</td>
+<td align="left">09:00</td>
+<td align="left">22:30</td>
+<td align="left">AY1</td>
+<td align="left">0</td>
+<td align="left">2018-11-17</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="section" class="section level2">
+<div id="estimated-travel-times" class="section level2">
 <h2 class="hasAnchor">
-<a href="#section" class="anchor"></a>10.</h2>
+<a href="#estimated-travel-times" class="anchor"></a>12. Estimated Travel Times</h2>
+<p>This API returns the estimated travel times for each segment in the expressway - you will usually find this information displayed on the electronic billboards before entering major expressways in SIngapore.</p>
+<p><code>getEstTravelTime</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">est_travel_time &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getEstTravelTime.html">getEstTravelTime</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(est_travel_time))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Name</th>
+<th align="left">Direction</th>
+<th align="left">FarEndPoint</th>
+<th align="left">StartPoint</th>
+<th align="left">EndPoint</th>
+<th align="left">EstTime</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">AYE</td>
+<td align="left">1</td>
+<td align="left">TUAS CHECKPOINT</td>
+<td align="left">AYE/MCE INTERCHANGE</td>
+<td align="left">TELOK BLANGAH RD</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="left">AYE</td>
+<td align="left">1</td>
+<td align="left">TUAS CHECKPOINT</td>
+<td align="left">TELOK BLANGAH RD</td>
+<td align="left">LOWER DELTA RD</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">AYE</td>
+<td align="left">1</td>
+<td align="left">TUAS CHECKPOINT</td>
+<td align="left">LOWER DELTA RD</td>
+<td align="left">NORMANTON PARK</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">AYE</td>
+<td align="left">1</td>
+<td align="left">TUAS CHECKPOINT</td>
+<td align="left">NORMANTON PARK</td>
+<td align="left">NORTH BUONA VISTA RD</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">AYE</td>
+<td align="left">1</td>
+<td align="left">TUAS CHECKPOINT</td>
+<td align="left">NORTH BUONA VISTA RD</td>
+<td align="left">CLEMENTI RD</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">AYE</td>
+<td align="left">1</td>
+<td align="left">TUAS CHECKPOINT</td>
+<td align="left">CLEMENTI RD</td>
+<td align="left">WEST COAST RD</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="faulty-traffic-lights" class="section level2">
+<h2 class="hasAnchor">
+<a href="#faulty-traffic-lights" class="anchor"></a>13. Faulty Traffic Lights</h2>
+<p>This API returns alerts of traffic lights that are either currently faulty or undergoing scheduled maintenance. Calling the API returns information of the alarm ID, node ID, fault type, time of fault, expected end of maintenance, and message. Note that faulty traffic lights are fairly uncommon so you can expect the API to return nothing occasionally.</p>
+<p><code>getFaultyTrafficLights</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">faulty_lights &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getFaultyTrafficLights.html">getFaultyTrafficLights</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+## Successful API call for faulty traffic lights alerts. Processing page 1...
+## API call successful. No faulty traffic lights alert at the present time.</code></pre></div>
+</div>
+<div id="road-openings" class="section level2">
+<h2 class="hasAnchor">
+<a href="#road-openings" class="anchor"></a>14. Road Openings</h2>
+<p>This API returns information on all planned road openings, and provides data on the start and end dates, the department or company in charge of the road opening, and the name of the new road.</p>
+<p><code>getRoadOpenings</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">road_openings &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getRoadOpenings.html">getRoadOpenings</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(road_openings))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">EventID</th>
+<th align="left">StartDate</th>
+<th align="left">EndDate</th>
+<th align="left">SvcDept</th>
+<th align="left">RoadName</th>
+<th align="left">Other</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">RMAPP-201812-0349</td>
+<td align="left">2019-01-02</td>
+<td align="left">2019-01-22</td>
+<td align="left">SP POWERGRID LTD - DISTRIBUTION RENEWAL PROJECTS</td>
+<td align="left">ADAM ROAD</td>
+<td align="left">For details, please call 69166987</td>
+</tr>
+<tr class="even">
+<td align="left">RMINRM-201812-0383</td>
+<td align="left">2018-12-17</td>
+<td align="left">2018-12-29</td>
+<td align="left">LAND TRANSPORT AUTHORITY</td>
+<td align="left">ADMIRALTY ROAD</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">RMAPP-201811-0800</td>
+<td align="left">2019-01-08</td>
+<td align="left">2019-01-28</td>
+<td align="left">SP POWERGRID LTD - DISTRIBUTION RENEWAL PROJECTS</td>
+<td align="left">ADMIRALTY ROAD EAST</td>
+<td align="left">For details, please call 69166981</td>
+</tr>
+<tr class="even">
+<td align="left">RMAPP-201812-0029</td>
+<td align="left">2018-12-17</td>
+<td align="left">2018-12-31</td>
+<td align="left">STARHUB LTD - TS</td>
+<td align="left">ADMIRALTY STREET</td>
+<td align="left">For details, please call 68256436</td>
+</tr>
+<tr class="odd">
+<td align="left">RMAPP-201812-0130</td>
+<td align="left">2018-12-31</td>
+<td align="left">2019-01-20</td>
+<td align="left">SP POWERGRID LTD - GAS DIVISION</td>
+<td align="left">ALJUNIED AVENUE 1</td>
+<td align="left">For details, please call 69165943</td>
+</tr>
+<tr class="even">
+<td align="left">RMAPP-201812-0130</td>
+<td align="left">2018-12-31</td>
+<td align="left">2019-01-20</td>
+<td align="left">SP POWERGRID LTD - GAS DIVISION</td>
+<td align="left">ALJUNIED AVENUE 2</td>
+<td align="left">For details, please call 69165943</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="road-works" class="section level2">
+<h2 class="hasAnchor">
+<a href="#road-works" class="anchor"></a>15. Road Works</h2>
+<p>This API returns information on all current or scheduled road works, and returns data on the start and end dates, the department or company in charge of the road opening, and the name of the road where work is being performed.</p>
+<p><code>getRoadWorks</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">road_openings &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getRoadOpenings.html">getRoadOpenings</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(road_openings))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">EventID</th>
+<th align="left">StartDate</th>
+<th align="left">EndDate</th>
+<th align="left">SvcDept</th>
+<th align="left">RoadName</th>
+<th align="left">Other</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">RMAPP-201812-0349</td>
+<td align="left">2019-01-02</td>
+<td align="left">2019-01-22</td>
+<td align="left">SP POWERGRID LTD - DISTRIBUTION RENEWAL PROJECTS</td>
+<td align="left">ADAM ROAD</td>
+<td align="left">For details, please call 69166987</td>
+</tr>
+<tr class="even">
+<td align="left">RMINRM-201812-0383</td>
+<td align="left">2018-12-17</td>
+<td align="left">2018-12-29</td>
+<td align="left">LAND TRANSPORT AUTHORITY</td>
+<td align="left">ADMIRALTY ROAD</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">RMAPP-201811-0800</td>
+<td align="left">2019-01-08</td>
+<td align="left">2019-01-28</td>
+<td align="left">SP POWERGRID LTD - DISTRIBUTION RENEWAL PROJECTS</td>
+<td align="left">ADMIRALTY ROAD EAST</td>
+<td align="left">For details, please call 69166981</td>
+</tr>
+<tr class="even">
+<td align="left">RMAPP-201812-0029</td>
+<td align="left">2018-12-17</td>
+<td align="left">2018-12-31</td>
+<td align="left">STARHUB LTD - TS</td>
+<td align="left">ADMIRALTY STREET</td>
+<td align="left">For details, please call 68256436</td>
+</tr>
+<tr class="odd">
+<td align="left">RMAPP-201812-0130</td>
+<td align="left">2018-12-31</td>
+<td align="left">2019-01-20</td>
+<td align="left">SP POWERGRID LTD - GAS DIVISION</td>
+<td align="left">ALJUNIED AVENUE 1</td>
+<td align="left">For details, please call 69165943</td>
+</tr>
+<tr class="even">
+<td align="left">RMAPP-201812-0130</td>
+<td align="left">2018-12-31</td>
+<td align="left">2019-01-20</td>
+<td align="left">SP POWERGRID LTD - GAS DIVISION</td>
+<td align="left">ALJUNIED AVENUE 2</td>
+<td align="left">For details, please call 69165943</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="traffic-imges" class="section level2">
+<h2 class="hasAnchor">
+<a href="#traffic-imges" class="anchor"></a>16. Traffic Imges</h2>
+<p>This API returns links to images of live traffic conditions along the major expressways and Woodlands and Tuas checkpoints, as well as the coordinates of the traffic cameras.</p>
+<p><code>getTrafficImages</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">traffic_images &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getTrafficImages.html">getTrafficImages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(traffic_images))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">CameraID</th>
+<th align="right">Latitude</th>
+<th align="right">Longitude</th>
+<th align="left">ImageLink</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1001</td>
+<td align="right">1.295313</td>
+<td align="right">103.8711</td>
+<td align="left"><a href="https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1001_0353_20181213035601_9a8741.jpg" class="uri">https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1001_0353_20181213035601_9a8741.jpg</a></td>
+</tr>
+<tr class="even">
+<td align="left">1002</td>
+<td align="right">1.319541</td>
+<td align="right">103.8786</td>
+<td align="left"><a href="https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1002_0353_20181213035600_ffab25.jpg" class="uri">https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1002_0353_20181213035600_ffab25.jpg</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1003</td>
+<td align="right">1.323957</td>
+<td align="right">103.8729</td>
+<td align="left"><a href="https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1003_0353_20181213035600_0e35f8.jpg" class="uri">https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1003_0353_20181213035600_0e35f8.jpg</a></td>
+</tr>
+<tr class="even">
+<td align="left">1004</td>
+<td align="right">1.319536</td>
+<td align="right">103.8751</td>
+<td align="left"><a href="https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1004_0353_20181213035600_f689f5.jpg" class="uri">https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1004_0353_20181213035600_f689f5.jpg</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1005</td>
+<td align="right">1.363520</td>
+<td align="right">103.9054</td>
+<td align="left"><a href="https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1005_0353_20181213035600_228498.jpg" class="uri">https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1005_0353_20181213035600_228498.jpg</a></td>
+</tr>
+<tr class="even">
+<td align="left">1006</td>
+<td align="right">1.357099</td>
+<td align="right">103.9020</td>
+<td align="left"><a href="https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1006_0353_20181213035600_aaee8d.jpg" class="uri">https://s3-ap-southeast-1.amazonaws.com/mtpdm/2018-12-13/03-59/1006_0353_20181213035600_aaee8d.jpg</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="traffic-incidents" class="section level2">
+<h2 class="hasAnchor">
+<a href="#traffic-incidents" class="anchor"></a>17. Traffic Incidents</h2>
+<p>This API returns information about current traffic incidents happening on the roads, such as accidents, vehicle breakdowns, traffic diversions etc. The coordinates of the incident as well as a brief message are also returned from the API for each traffic incident.</p>
+<p><code>getTrafficIncidents</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">traffic_incidents &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getTrafficIncidents.html">getTrafficIncidents</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(traffic_incidents))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Type</th>
+<th align="right">Latitude</th>
+<th align="right">Longitude</th>
+<th align="left">Message</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Roadwork</td>
+<td align="right">1.357911</td>
+<td align="right">103.9024</td>
+<td align="left">(13/12)3:36 Roadworks on KPE (towards TPE) before Tampines Rd Exit. Avoid lane 1.</td>
+</tr>
+<tr class="even">
+<td align="left">Roadwork</td>
+<td align="right">1.285581</td>
+<td align="right">103.7987</td>
+<td align="left">(13/12)2:44 Roadworks on AYE (towards MCE) at Alexandra Rd Exit.</td>
+</tr>
+<tr class="odd">
+<td align="left">Roadwork</td>
+<td align="right">1.323583</td>
+<td align="right">103.8731</td>
+<td align="left">(13/12)2:25 Roadworks on PIE (towards Changi Airport) at KPE(ECP) Exit.</td>
+</tr>
+<tr class="even">
+<td align="left">Accident</td>
+<td align="right">1.297177</td>
+<td align="right">103.8979</td>
+<td align="left">(13/12)1:51 Accident on ECP (towards City) after Still Rd Sth Exit.</td>
+</tr>
+<tr class="odd">
+<td align="left">Roadwork</td>
+<td align="right">1.281824</td>
+<td align="right">103.8381</td>
+<td align="left">(13/12)1:14 Roadworks on Outram Road (towards Outram Park) after Chin Swee Road.</td>
+</tr>
+<tr class="even">
+<td align="left">Roadwork</td>
+<td align="right">1.287766</td>
+<td align="right">103.8409</td>
+<td align="left">(13/12)1:12 Roadworks in CTE Tunnel (towards AYE) before Outram Rd Exit. Avoid lane 1.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="traffic-speed-bands" class="section level2">
+<h2 class="hasAnchor">
+<a href="#traffic-speed-bands" class="anchor"></a>18. Traffic Speed Bands</h2>
+<p>This API returns information on current traffic speeds on expressways and major arterial roads, and these speeds are expressed in speed bands.</p>
+<p><code>getTrafficSpeedBands</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">traffic_speed_bands &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getTrafficSpeedBands.html">getTrafficSpeedBands</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(traffic_speed_bands))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">LinkID</th>
+<th align="left">RoadName</th>
+<th align="left">RoadCategory</th>
+<th align="left">SpeedBand</th>
+<th align="left">MinimumSpeed</th>
+<th align="left">MaximumSpeed</th>
+<th align="left">Location</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">103098943</td>
+<td align="left">CHOA CHU KANG AVENUE 3</td>
+<td align="left">D</td>
+<td align="left">5</td>
+<td align="left">40</td>
+<td align="left">49</td>
+<td align="left">1.3805895432850994 103.74201730473243 1.3800400299576012 103.74120855605975</td>
+</tr>
+<tr class="even">
+<td align="left">103076063</td>
+<td align="left">WOODLANDS ROAD</td>
+<td align="left">B</td>
+<td align="left">4</td>
+<td align="left">30</td>
+<td align="left">39</td>
+<td align="left">1.399027473240379 103.7553182996927 1.3986609754803143 103.75518194323922</td>
+</tr>
+<tr class="odd">
+<td align="left">103030883</td>
+<td align="left">HOUGANG AVENUE 4</td>
+<td align="left">D</td>
+<td align="left">4</td>
+<td align="left">30</td>
+<td align="left">39</td>
+<td align="left">1.3742439017982357 103.88529975827204 1.3738695600842703 103.8852253844054</td>
+</tr>
+<tr class="even">
+<td align="left">104003992</td>
+<td align="left">CLEMENTI AVENUE 6</td>
+<td align="left">F</td>
+<td align="left">6</td>
+<td align="left">50</td>
+<td align="left">59</td>
+<td align="left">1.3163287378822295 103.76133268167833 1.3152605534502255 103.76088573773033</td>
+</tr>
+<tr class="odd">
+<td align="left">103110036</td>
+<td align="left">HARVEY ROAD</td>
+<td align="left">E</td>
+<td align="left">2</td>
+<td align="left">10</td>
+<td align="left">19</td>
+<td align="left">1.333534171783063 103.88445104036495 1.334480240662004 103.88423757172991</td>
+</tr>
+<tr class="even">
+<td align="left">103089006</td>
+<td align="left">PIONEER ROAD NORTH</td>
+<td align="left">B</td>
+<td align="left">4</td>
+<td align="left">30</td>
+<td align="left">39</td>
+<td align="left">1.3468683821422813 103.69025703809406 1.3466193981361332 103.6903389382926</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="vms-emas" class="section level2">
+<h2 class="hasAnchor">
+<a href="#vms-emas" class="anchor"></a>19. VMS / EMAS</h2>
+<p>This API returns all traffic advisories about current traffic conditions that are displayed on the Electronic Monitoring Advisory System (EMAS) signboards along expressways and major roads, as well as the coordinates of each EMAS signboard.</p>
+<p><code>getVMS</code> is the wrapper function for this API, and takes in the API key as its only argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vms &lt;-<span class="st"> </span><span class="kw"><a href="../reference/getVMS.html">getVMS</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.getenv">Sys.getenv</a></span>(<span class="st">'LTA_DATAMALL_KEY'</span>))
+knitr::<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(vms))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">EquipmentID</th>
+<th align="right">Latitude</th>
+<th align="right">Longitude</th>
+<th align="left">Message</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">TID_0006</td>
+<td align="right">1.378582</td>
+<td align="right">103.9136</td>
+<td align="left">HEAVY VEHICLES-,KEEP TO,LEFT LANE</td>
+</tr>
+<tr class="even">
+<td align="left">AVMS_0009</td>
+<td align="right">1.322413</td>
+<td align="right">103.8811</td>
+<td align="left">DO NOT STOP,VEHICLE,IN TUNNEL</td>
+</tr>
+<tr class="odd">
+<td align="left">VMS_0013</td>
+<td align="right">1.333434</td>
+<td align="right">103.8895</td>
+<td align="left">LITTER PICKING LN 1,</td>
+</tr>
+<tr class="even">
+<td align="left">VMS_0005</td>
+<td align="right">1.310220</td>
+<td align="right">103.8756</td>
+<td align="left">FOLLOW TRAFFIC SIGNS,</td>
+</tr>
+<tr class="odd">
+<td align="left">VMS_0002</td>
+<td align="right">1.302802</td>
+<td align="right">103.8783</td>
+<td align="left">DO NOT TAILGATE,</td>
+</tr>
+<tr class="even">
+<td align="left">VMS_0017</td>
+<td align="right">1.334425</td>
+<td align="right">103.8914</td>
+<td align="left">DO NOT TAILGATE,</td>
+</tr>
+</tbody>
+</table>
 </div>
   </div>
 
@@ -209,17 +1471,25 @@ devtools::<span class="kw">install_github</span>(<span class="st">'shaunkhoo/lta
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#working-with-lta-datamalls-apis">0. Working with LTA Datamall’s APIs</a></li>
-      <li><a href="#bus-arrival-timings">1. Bus Arrival Timings</a></li>
-      <li><a href="#bus-services">2. Bus Services</a></li>
-      <li><a href="#bus-routes">3. Bus Routes</a></li>
-      <li><a href="#bus-stops">4. Bus Stops</a></li>
-      <li><a href="#passenger-volume-buses">5. Passenger Volume (Buses)</a></li>
-      <li><a href="#passenger-volume-trains">6. Passenger Volume (Trains)</a></li>
-      <li><a href="#taxi-availability">7. Taxi Availability</a></li>
-      <li><a href="#carpark-availability">8. Carpark Availability</a></li>
-      <li><a href="#erp-rates">9. ERP Rates</a></li>
-      <li><a href="#section">10.</a></li>
+<li><a href="#working-with-lta-datamalls-apis">1. Working with LTA Datamall’s APIs</a></li>
+      <li><a href="#bus-arrival-timings">2. Bus Arrival Timings</a></li>
+      <li><a href="#bus-services">3. Bus Services</a></li>
+      <li><a href="#bus-routes">4. Bus Routes</a></li>
+      <li><a href="#bus-stops">5. Bus Stops</a></li>
+      <li><a href="#passenger-volume-buses">6. Passenger Volume (Buses)</a></li>
+      <li><a href="#passenger-volume-trains">7. Passenger Volume (Trains)</a></li>
+      <li><a href="#taxi-availability">8. Taxi Availability</a></li>
+      <li><a href="#train-service-alerts">9. Train Service Alerts</a></li>
+      <li><a href="#carpark-availability">10. Carpark Availability</a></li>
+      <li><a href="#erp-rates">11. ERP Rates</a></li>
+      <li><a href="#estimated-travel-times">12. Estimated Travel Times</a></li>
+      <li><a href="#faulty-traffic-lights">13. Faulty Traffic Lights</a></li>
+      <li><a href="#road-openings">14. Road Openings</a></li>
+      <li><a href="#road-works">15. Road Works</a></li>
+      <li><a href="#traffic-imges">16. Traffic Imges</a></li>
+      <li><a href="#traffic-incidents">17. Traffic Incidents</a></li>
+      <li><a href="#traffic-speed-bands">18. Traffic Speed Bands</a></li>
+      <li><a href="#vms-emas">19. VMS / EMAS</a></li>
       </ul>
 </div>
       </div>

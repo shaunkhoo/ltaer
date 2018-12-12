@@ -1,7 +1,5 @@
 ---
 title: "ltaer: Core Functions"
-author: "Shaun Khoo"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
@@ -11,12 +9,11 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+  collapse = TRUE
+  )
 ```
 
-## 0. Working with LTA Datamall's APIs
+## 1. Working with LTA Datamall's APIs
 
 ####API Key
 
@@ -41,7 +38,7 @@ devtools::install_github('shaunkhoo/ltaer')
 
 This will download the `ltaer` package directly from my Github repository and into your RStudio. Thereafter, you simply load the package in the same way as any other package, by entering `library(ltaer)`.
 
-## 1. Bus Arrival Timings
+## 2. Bus Arrival Timings
 
 Probably the most well-utilised API of the lot, the Bus Arrival API enables users to retrieve bus arrival timings for any bus stop in Singapore. There are some specific things to mention here about the API (you can also find this in the documentation):
 
@@ -57,90 +54,208 @@ There are some important differences between this package's wrapper function, `g
 
 I provide an example below of the output you can expect from `getBusTimings`.
 
-```{r}
+``` {r message = FALSE, warning = FALSE}
 library(ltaer)
 
-# The following code is commented out as it may not work all the time. The output has been saved in this package as 'bus_arrivals' for your use.
-# bus_arrivals <- getBusTimings(c('07531', '09047', '11239', '14151', '66451', '44289', '50021', '54269', '03019', '09022', '41029'), api_key = Sys.getenv('LTA_DATAMALL_KEY'))
+bus_arrivals <- getBusTimings(c('07531', '09047', '11239'), api_key = Sys.getenv('LTA_DATAMALL_KEY'))
 
 # Note that I've transposed the dataframe (the columns are the rows and vice versa) for clarity of presentation.
-#knitr::kable(t(bus_arrivals[1:3,]))
+knitr::kable(t(bus_arrivals[1:3,]))
 ```
 
-## 2. Bus Services
+## 3. Bus Services
 
 This API returns service information for all buses currently in operation in Singapore. The data available here is similar to those you find on the information boards at each bus stop.
 
 `getBusServices` is the wrapper function for this API, and takes in the API key as its only argument.
 
-```{r warning=FALSE}
+```{r message = FALSE, warning=FALSE}
+bus_services <- getBusServices(Sys.getenv('LTA_DATAMALL_KEY'))
 
 # Note that I've transposed the dataframe (the columns are the rows and vice versa) for clarity of presentation.
-#knitr::kable(t(bus_services[1:9,]))
+knitr::kable(t(bus_services[1:9,]))
 ```
 
-## 3. Bus Routes
+## 4. Bus Routes
 
 This API returns route information for all services currently in operation in Singapore. The data here is quite useful as they provide each bus stop code and stop sequence for each bus service, so you can plot out the full route for each bus service. While this is already quite useful, it would have been even better if route polylines were provided as well.
 
 `getBusRoutes` is the wrapper function for this API, and takes in the API key as its only argument.
 
-```{r}
-# The following code is commented out as it takes a long time to retrieve all the routes. The output has been saved in this package as 'bus_routes' for your use.
-# bus_routes <- getBusRoutes(Sys.getenv('LTA_DATAMALL_KEY'))
+```{r message = FALSE}
+bus_routes <- getBusRoutes(Sys.getenv('LTA_DATAMALL_KEY'))
 
 # Note that I've transposed the dataframe (the columns are the rows and vice versa) for clarity of presentation.
-#knitr::kable(bus_routes[1:9,])
+knitr::kable(t(bus_routes[1:9,]))
 ```
 
-## 4. Bus Stops
+## 5. Bus Stops
 
 This API returns information for all bus stops currently being serviced by buses in Singapore, such as bus stop codes, coordinates and road names.
 
 `getBusStops` is the wrapper function for this API, and takes in the API key as its only argument.
 
-```{r message=FALSE}
-#knitr::kable(head(bus_stops))
+```{r message = FALSE}
+bus_stops <- getBusStops(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(bus_stops[1:10,])
 ```
 
-## 5. Passenger Volume (Buses)
+## 6. Passenger Volume (Buses)
 
-There are two 
+There are two APIs here that you can call - the first is for passenger volume for each bus stop, and the second is for passenger volume for each origin-destination bus stop pair. Here are the two wrapper functions for the respective APIs:
 
+* `getBusPassengerVol()`: Passenger volume for each bus stop
+* `getBusPassengerVol_od()`: Passenger volume for each origin-destination bus stop pair
 
+The wrappers for these two APIs require you to enter a date and your API key, and returns you the link which LTA provides to download the zipped CSV file of the data. Note that the date must be supplied in R's Date format - you can see this from the first example below. If you do not supply any date into the function, it will revert to the default of 60 days prior to the current date, as indicated in the second example.
 
+```{r message = FALSE}
+getBusPassengerVol(as.Date('01-10-2018', format = '%d-%m-%Y'), Sys.getenv('LTA_DATAMALL_KEY'))
+```
+```{r message = FALSE}
+getBusPassengerVol_od(Sys.Date()-60, Sys.getenv('LTA_DATAMALL_KEY'))
+```
 
-## 6. Passenger Volume (Trains)
+## 7. Passenger Volume (Trains)
 
+Similar to the APIs for buses, these APIs provide the same data but for trains instead. Here are the two wrapper functions for the respective APIs:
 
+* `getTrainPassengerVol()`: Passenger volume for each MRT station
+* `getTrainPassengerVol_od()`: Passenger volume for each origin-destination MRT station pair
 
-## 7. Taxi Availability
+```{r message = FALSE}
+getTrainPassengerVol(as.Date('01-10-2018', format = '%d-%m-%Y'), Sys.getenv('LTA_DATAMALL_KEY'))
+```
+```{r message = FALSE}
+getTrainPassengerVol_od(Sys.Date()-60, Sys.getenv('LTA_DATAMALL_KEY'))
+```
+
+## 8. Taxi Availability
 
 This API returns the coordinates for all available taxis that are available for hire in Singapore (excludes hired and 'busy' taxis). 
 
 `getTaxiAvail` is the wrapper function for this API, and takes in the API key as its only argument.
 
 ```{r message=FALSE}
-#knitr::kable(head(taxi_avail))
+taxi_avail <- getTaxiAvail(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(taxi_avail[1:10,])
 ```
 
-## 8. Carpark Availability
+## 9. Train Service Alerts
 
-This API returns the coordinates for all available taxis that are available for hire in Singapore (excludes hired and 'busy' taxis). 
+This API returns information about train service unavailability during scheduled operating hours - which refers to unexpected train service delays or breakdowns. Unfortunately (or otherwise...) I did not get a chance to test this fully since there were no train alerts whenever I called the API, but it should return all the information in a dataframe format.
 
-`getTaxiAvail` is the wrapper function for this API, and takes in the API key as its only argument.
+`getTrainAlerts` is the wrapper function for this API, and takes in the API key as its only argument.
+
+``` {r}
+getTrainAlerts(Sys.getenv('LTA_DATAMALL_KEY'))
+```
+
+## 10. Carpark Availability
+
+This API returns the number of available parking lots, as obtained from HDB, LTA, and URA carpark data. This covers almost all carparks in housing estates and quite a few carparks in the CBD area. Calling this API returns the coordinates and description for each carpark as well as the number of available parking lots.
+
+`getCarparkAvail` is the wrapper function for this API, and takes in the API key as its only argument.
 
 ```{r message=FALSE}
-#knitr::kable(head(taxi_avail))
+carpark_avail <- getCarparkAvail(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(head(carpark_avail))
 ```
 
-## 9. ERP Rates
+## 11. ERP Rates
 
-This API 
+This API returns information about the Electronic Road Pricing (ERP) rates for all vehicle types across all timings and for all zones. Calling this API returns information about the ERP rate by vehicle type, timing, and zone ID.
 
-## 10. 
+`getERPRates` is the wrapper function for this API, and takes in the API key as its only argument.
 
+```{r message = FALSE}
+erp_rates <- getERPRates(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(head(erp_rates))
+```
 
+## 12. Estimated Travel Times
 
+This API returns the estimated travel times for each segment in the expressway - you will usually find this information displayed on the electronic billboards before entering major expressways in SIngapore.
 
+`getEstTravelTime` is the wrapper function for this API, and takes in the API key as its only argument.
 
+```{r message = FALSE}
+est_travel_time <- getEstTravelTime(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(head(est_travel_time))
+```
+
+## 13. Faulty Traffic Lights
+
+This API returns alerts of traffic lights that are either currently faulty or undergoing scheduled maintenance. Calling the API returns information of the alarm ID, node ID, fault type, time of fault, expected end of maintenance, and message. Note that faulty traffic lights are fairly uncommon so you can expect the API to return nothing occasionally.
+
+`getFaultyTrafficLights` is the wrapper function for this API, and takes in the API key as its only argument.
+
+```{r}
+faulty_lights <- getFaultyTrafficLights(Sys.getenv('LTA_DATAMALL_KEY'))
+```
+
+## 14. Road Openings
+
+This API returns information on all planned road openings, and provides data on the start and end dates, the department or company in charge of the road opening, and the name of the new road.
+
+`getRoadOpenings` is the wrapper function for this API, and takes in the API key as its only argument.
+
+```{r message = FALSE}
+road_openings <- getRoadOpenings(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(head(road_openings))
+```
+
+## 15. Road Works
+
+This API returns information on all current or scheduled road works, and returns data on the start and end dates, the department or company in charge of the road opening, and the name of the road where work is being performed.
+
+`getRoadWorks` is the wrapper function for this API, and takes in the API key as its only argument.
+
+```{r message = FALSE}
+road_openings <- getRoadOpenings(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(head(road_openings))
+```
+
+## 16. Traffic Imges
+
+This API returns links to images of live traffic conditions along the major expressways and Woodlands and Tuas checkpoints, as well as the coordinates of the traffic cameras.
+
+`getTrafficImages` is the wrapper function for this API, and takes in the API key as its only argument.
+
+```{r message = FALSE}
+traffic_images <- getTrafficImages(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(head(traffic_images))
+```
+
+## 17. Traffic Incidents
+
+This API returns information about current traffic incidents happening on the roads, such as accidents, vehicle breakdowns, traffic diversions etc. The coordinates of the incident as well as a brief message are also returned from the API for each traffic incident.
+
+`getTrafficIncidents` is the wrapper function for this API, and takes in the API key as its only argument.
+
+```{r message = FALSE}
+traffic_incidents <- getTrafficIncidents(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(head(traffic_incidents))
+```
+
+## 18. Traffic Speed Bands
+
+This API returns information on current traffic speeds on expressways and major arterial roads, and these speeds are expressed in speed bands.
+
+`getTrafficSpeedBands` is the wrapper function for this API, and takes in the API key as its only argument.
+
+```{r message = FALSE}
+traffic_speed_bands <- getTrafficSpeedBands(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(head(traffic_speed_bands))
+```
+
+## 19. VMS / EMAS
+
+This API returns all traffic advisories about current traffic conditions that are displayed on the Electronic Monitoring Advisory System (EMAS) signboards along expressways and major roads, as well as the coordinates of each EMAS signboard.
+
+`getVMS` is the wrapper function for this API, and takes in the API key as its only argument.
+
+```{r message = FALSE}
+vms <- getVMS(Sys.getenv('LTA_DATAMALL_KEY'))
+knitr::kable(head(vms))
+```

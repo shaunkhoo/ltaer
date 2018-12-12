@@ -6,7 +6,7 @@
 #' @return A dataframe containing ERP rates for each vehicle type, ERP rate timing, and zone.
 #' @examples
 #' \donttest{
-#' getERPRates(Sys.getenv('LTA_DATAMALL_KEY'))
+#' getERPRates(mykey)
 #' }
 #' @import httr
 #' @export getERPRates
@@ -50,6 +50,11 @@ getERPRates <- function(api_key) {
     output <- rbind(output, output0)
     num <- num + 1
   }
+
+  for (col in colnames(output)) {
+    output[[col]] <- as.character(output[[col]])
+  }
+
   message('API call completed! Number of ERP rates: ', nrow(output))
   return(output)
 }
