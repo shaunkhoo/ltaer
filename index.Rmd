@@ -5,13 +5,13 @@ date: "11/12/2018"
 output: html_document
 ---
 
-# ltaer <img src="man/figures/logo.png" align="right" /> 
+# ltaer
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introduction and Motivation
+## Introduction and Motivation  <img src="reference/figures/logo.png" align="right" height="278" width="240" style="margin:20px 40px"/> 
 
 The `ltaer` package (pronounced 'later') is a convenient R wrapper for the various transportation-related APIs offered by the Land Transport Authority of Singapore (also known as the LTA Datamall). Currently, most of the APIs are geared towards app developers who use these real-time data for their mobile offerings. Used correctly and collected over a longer period of time, the data from the APIs can also serve as a rich dataset for people who are keen on analysing transportation trends in Singapore.
 

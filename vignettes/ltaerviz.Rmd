@@ -121,8 +121,8 @@ In the example below, I join the bus stop availability data for October 2018 (we
 
 ``` {r message = FALSE, warning = FALSE}
 ggmap(sg_map, darken=c('0.70', '#030d2f')) + 
-  geom_point(data = bus_ridership_cleaned, aes(x = Longitude, y = Latitude, size = Total_in, color = Total_in, alpha = Total_in)) 
-  + xlab('') + ylab('') + labs(colour = 'Total tap in') + 
+  geom_point(data = bus_ridership_cleaned, aes(x = Longitude, y = Latitude, size = Total_in, color = Total_in, alpha = Total_in)) +
+  xlab('') + ylab('') + labs(colour = 'Total tap in') + 
   scale_size(range = c(0.5, 10)) +
   scale_alpha_continuous(range = c(0.05, 1)) +
   scale_colour_gradient(low = '#FFFFFF', high = '#df2222') + 
