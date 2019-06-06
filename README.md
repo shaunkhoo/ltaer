@@ -1,13 +1,3 @@
----
-title: "ltaer"
-author: "Shaun Khoo"
-output: 
-  html_document:
-    keep_md: true
----
-
-
-
 ## Introduction <img src="docs/reference/figures/logo.png" align="right" height="278" width="240" style="margin:30px 40px"/> 
 
 The `ltaer` package (pronounced 'later') is an API client R package that enables users to call the various transportation-related APIs offered by the Land Transport Authority of Singapore. Currently, most of these APIs are geared towards mobile app developers who provide their end-users with real-time information about bus arrivals or traffic conditions. If used correctly, the data from these APIs can also serve as a rich dataset for those keen on analysing transportation trends in Singapore.
